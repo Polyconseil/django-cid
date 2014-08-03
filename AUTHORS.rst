@@ -5,9 +5,10 @@ Credits
 Development Lead
 ----------------
 
-* Francis Reyes <francis.mark.reyes@gmail.com>
+* Jonathan Moss <jonathan.moss@snowballone.com.au>
+
 
 Contributors
 ------------
 
-None yet. Why not be the first?
+* Francis Reyes <francis.reyes@snowballone.com.au>
