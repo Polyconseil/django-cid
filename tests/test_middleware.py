@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.test.utils import override_settings
 from mock import Mock, patch
 
 from cid.middleware import CidMiddleware
@@ -16,19 +17,28 @@ class TestCidMiddleware(TestCase):
             request.META['X_CORRELATION_ID'] = cid
         return request
 
-    @patch('cid.locals._thread_locals')
-    def test_process_request(self, _thread_locals):
+    @patch('cid.middleware.set_cid')
+    def test_process_request(self, set_cid):
         request = self.get_mock_request(self.cid)
         middleware = CidMiddleware()
         middleware.process_request(request)
-        self.assertEqual(self.cid, getattr(_thread_locals, 'CID', None))
+        set_cid.assert_called_with(self.cid)
 
-    @patch('cid.locals._thread_locals')
-    def test_process_request_with_no_header(self, _thread_locals):
+    @patch('cid.middleware.set_cid')
+    def test_process_request_with_no_header(self, set_cid):
         request = self.get_mock_request()
         middleware = CidMiddleware()
         middleware.process_request(request)
-        self.assertEqual(None, getattr(_thread_locals, 'CID', None))
+        set_cid.assert_called_with(None)
+
+    @patch('cid.middleware.set_cid')
+    @override_settings(CID_HEADER='A_TEST_HEADER')
+    def test_process_request_with_custom_header(self, set_cid):
+        request = Mock()
+        request.META = {'A_TEST_HEADER': 'different-cid'}
+        middleware = CidMiddleware()
+        middleware.process_request(request)
+        set_cid.assert_called_with('different-cid')
 
     @patch('cid.middleware.get_cid')
     def test_process_response(self, get_cid):
@@ -47,3 +57,6 @@ class TestCidMiddleware(TestCase):
         middleware = CidMiddleware()
         middleware.process_response(request, response)
         self.assertNotIn('X_CORRELATION_ID', response.keys())
+
+
+
