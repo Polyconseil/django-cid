@@ -4,12 +4,19 @@ python:
   - "3.3"
   - "3.4"
 
+cache:
+  directories:
+    - $HOME/.pip-cache
+
 matrix:
   allow_failures:
     - python: "3.3"
     - python: "3.4"
 
 env:
+  global:
+    - PIP_OPTS="--download-cache $HOME/.pip-cache"
+
   matrix:
     - TOX_ENV=py27-1.7
     - TOX_ENV=py27-1.6
@@ -19,10 +26,10 @@ env:
     - TOX_ENV=py34-1.6
 
 install:
-  - pip install -U setuptools wheel
+  - pip install $PIP_OPTS -U setuptools wheel
   - python setup.py develop
-  - pip install --use-wheel -U -r requirements/ci.txt
-  - pip install tox
+  - pip install $PIP_OPTS --use-wheel -U -r requirements/ci.txt
+  - pip install $PIP_OPTS tox
 
 script:
   - tox -e $TOX_ENV
