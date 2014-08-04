@@ -29,3 +29,21 @@ class TestCidMiddleware(TestCase):
         middleware = CidMiddleware()
         middleware.process_request(request)
         self.assertEqual(None, getattr(_thread_locals, 'CID', None))
+
+    @patch('cid.middleware.get_cid')
+    def test_process_response(self, get_cid):
+        get_cid.return_value = self.cid
+        request = Mock()
+        response = {}
+        middleware = CidMiddleware()
+        middleware.process_response(request, response)
+        self.assertEqual(response['X_CORRELATION_ID'], self.cid)
+
+    @patch('cid.middleware.get_cid')
+    def test_process_response_with_no_cid(self, get_cid):
+        get_cid.return_value = None
+        request = Mock()
+        response = {}
+        middleware = CidMiddleware()
+        middleware.process_response(request, response)
+        self.assertNotIn('X_CORRELATION_ID', response.keys())
