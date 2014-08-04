@@ -27,7 +27,7 @@ lint:
 	flake8 cid tests
 
 test:
-	python runtests.py test
+	python runtests.py tests
 
 test-all:
 	tox

@@ -32,7 +32,6 @@ def pytest_configure():
             'django.contrib.messages',
             'django.contrib.staticfiles',
             'django.contrib.admin',
-            'django.contrib.flatpages',
             'cid',
         ],
 

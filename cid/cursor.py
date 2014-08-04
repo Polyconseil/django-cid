@@ -1,5 +1,3 @@
-from django.db.backends.util import CursorWrapper
-
 from .locals import get_cid
 
 
