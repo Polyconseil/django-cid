@@ -59,7 +59,7 @@ WSGI_APPLICATION = 'sandbox.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'cid.backends.sqlite3',
         'NAME': location('db.sqlite3'),
     }
 }

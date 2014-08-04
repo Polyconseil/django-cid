@@ -1,6 +1,6 @@
 from django.db.backends.mysql.base import DatabaseWrapper as BaseMySQLWrapper
 
-from .cursor import CidCursorWrapper
+from ...cursor import CidCursorWrapper
 
 
 class DatabaseWrapper(BaseMySQLWrapper):

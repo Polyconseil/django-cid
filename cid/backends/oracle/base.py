@@ -2,7 +2,7 @@ from django.db.backends.oracle.base import (
     DatabaseWrapper as BaseOracleWrapper
 )
 
-from .cursor import CidCursorWrapper
+from ...cursor import CidCursorWrapper
 
 
 class DatabaseWrapper(BaseOracleWrapper):

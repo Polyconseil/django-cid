@@ -2,7 +2,7 @@ from django.db.backends.postgresql_psycopg2.base import (
     DatabaseWrapper as BasePostgresqlWrapper
 )
 
-from .cursor import CidCursorWrapper
+from ...cursor import CidCursorWrapper
 
 
 class DatabaseWrapper(BasePostgresqlWrapper):

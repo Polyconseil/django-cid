@@ -2,7 +2,7 @@ from django.db.backends.sqlite3.base import (
     DatabaseWrapper as BaseSqliteWrapper
 )
 
-from .cursor import CidCursorWrapper
+from ...cursor import CidCursorWrapper
 
 
 class DatabaseWrapper(BaseSqliteWrapper):
