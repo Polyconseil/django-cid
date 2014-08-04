@@ -1,17 +1,28 @@
-# Config file for automatic testing at travis-ci.org
-
 language: python
-
 python:
-  - "3.3"
   - "2.7"
-  - "2.6"
+  - "3.3"
+  - "3.4"
 
-# command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
-install: pip install -r requirements-test.txt
+matrix:
+  allow_failures:
+    - python: "3.3"
+    - python: "3.4"
 
-# command to run tests using coverage, e.g. python setup.py test
-script: coverage run --source cid runtests.py
+env:
+  matrix:
+    - TOX_ENV=py27-1.7
+    - TOX_ENV=py27-1.6
+    - TOX_ENV=py33-1.7
+    - TOX_ENV=py33-1.6
+    - TOX_ENV=py34-1.7
+    - TOX_ENV=py34-1.6
 
-# report coverage to coveralls.io
-after_success: coveralls
+install:
+  - pip install -U setuptools wheel
+  - python setup.py develop
+  - pip install --use-wheel -U -r requirements/ci.txt
+  - pip install tox
+
+script:
+  - tox -e $TOX_ENV
