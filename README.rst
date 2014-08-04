@@ -2,11 +2,11 @@
 Django Correlation IDs
 ======================
 
-.. image:: https://travis-ci.org/fmr/cid.png?branch=master
+.. image:: https://travis-ci.org/snowball-digital/cid.png?branch=master
     :target: https://travis-ci.org/fmr/cid
 
-.. image:: https://coveralls.io/repos/fmr/cid/badge.png?branch=master
-    :target: https://coveralls.io/r/fmr/cid?branch=master
+.. image:: https://coveralls.io/repos/snowball-digital/cid/badge.png?branch=master
+    :target: https://coveralls.io/r/snowball-digital/cid?branch=master
 
 Correlation IDs in Django for debugging requests
 
