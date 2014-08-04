@@ -1,5 +1,0 @@
-# Django 1.7 beta release
-https://github.com/django/django/archive/1.7c2.zip
-
-wheel>=0.23.0
-# Additional requirements go here
