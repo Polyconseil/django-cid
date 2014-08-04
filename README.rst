@@ -3,7 +3,7 @@ Django Correlation IDs
 ======================
 
 .. image:: https://travis-ci.org/snowball-digital/cid.png?branch=master
-    :target: https://travis-ci.org/fmr/cid
+    :target: https://travis-ci.org/snowball-digital/cid
 
 .. image:: https://coveralls.io/repos/snowball-digital/cid/badge.png?branch=master
     :target: https://coveralls.io/r/snowball-digital/cid?branch=master
