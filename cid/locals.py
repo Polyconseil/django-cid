@@ -9,5 +9,3 @@ def set_cid(cid):
 
 def get_cid():
     return getattr(_thread_locals, 'CID', None)
-
-
