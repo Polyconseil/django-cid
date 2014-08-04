@@ -30,7 +30,7 @@ setup(
     long_description=readme + '\n\n' + history,
     author='Francis Reyes',
     author_email='francis.mark.reyes@gmail.com',
-    url='https://github.com/fmr/cid',
+    url='https://github.com/snowball-digital/cid',
     packages=[
         'cid',
     ],
