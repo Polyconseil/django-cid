@@ -31,6 +31,16 @@ class TestCidMiddleware(TestCase):
         middleware.process_request(request)
         set_cid.assert_called_with(None)
 
+    @patch('cid.middleware.uuid4')
+    @patch('cid.middleware.set_cid')
+    @override_settings(CID_GENERATE=True)
+    def test_process_request_generates_uuid(self, set_cid, uuid4):
+        uuid4.return_value = '6fa459ea-ee8a-3ca4-894e-db77e160355e'
+        request = self.get_mock_request()
+        middleware = CidMiddleware()
+        middleware.process_request(request)
+        set_cid.assert_called_with('6fa459ea-ee8a-3ca4-894e-db77e160355e')
+
     @patch('cid.middleware.set_cid')
     @override_settings(CID_HEADER='A_TEST_HEADER')
     def test_process_request_with_custom_header(self, set_cid):
@@ -57,6 +67,3 @@ class TestCidMiddleware(TestCase):
         middleware = CidMiddleware()
         middleware.process_response(request, response)
         self.assertNotIn('X_CORRELATION_ID', response.keys())
-
-
-
