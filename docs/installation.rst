@@ -6,7 +6,15 @@ At the command line::
 
     $ pip install cid
 
-Or, if you have virtualenvwrapper installed::
+You will need to add ``cid`` to your list of installed apps.
 
-    $ mkvirtualenv cid
-    $ pip install cid
+.. code-block:: python
+
+    INSTALLED_APPS = (
+        # some apps
+        'cid',
+        # some other apps
+    )
+
+For more information on how to actually make use of Django Correlation Id see
+the :ref:`usage` section.

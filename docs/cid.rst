@@ -1,8 +1,21 @@
 cid package
 ===========
 
-Submodules
-----------
+cid.context_processors module
+-----------------------------
+
+.. automodule:: cid.context_processors
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cid.cursor module
+-----------------
+
+.. automodule:: cid.cursor
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 cid.locals module
 -----------------
@@ -16,23 +29,6 @@ cid.middleware module
 ---------------------
 
 .. automodule:: cid.middleware
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-cid.models module
------------------
-
-.. automodule:: cid.models
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-Module contents
----------------
-
-.. automodule:: cid
     :members:
     :undoc-members:
     :show-inheritance:

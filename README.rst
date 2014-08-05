@@ -8,30 +8,28 @@ Django Correlation IDs
 .. image:: https://coveralls.io/repos/snowball-digital/cid/badge.png?branch=master
     :target: https://coveralls.io/r/snowball-digital/cid?branch=master
 
-Correlation IDs in Django for debugging requests
 
-Documentation
--------------
+Logging is important. Anyone who has had a call at 3am to say the site is down
+knows this. Without quality logging it is almost impossible to work out what
+on earth is happening.
 
-TODO
+Even with plenty of logs it can be hard to track down exactly what the effects
+of a particular request are. Enter Django Correlation IDs. The approach
+is quite a simple one. Incoming requests are assigned a unique id (a uuid).
+This can either happen in say your public facing web server (e.g. nginx) or be
+applied as soon as it hits django.
 
-
-Quickstart
-----------
-
-Clone CID::
-
-    git clone git@github.com:snowball-digital/cid.git
-
-Work on CID::
-
-    python setup.py develop
-
-Then use it in a project::
-
-    import cid
+This ``cid`` is then available throught the django request/response cycle. We
+provide filters for logging witch adds the ``cid`` to the logging record so you
+can add it to your formatting string. We also provide wrappers around all the
+standard database backends which adds the ``cid`` as a comment before each SQL
+request.
 
 Features
 --------
 
-* TODO
+* Processing/Generation of a correlation id
+* Database wrappers to add correlation id to each sql call
+* Logging filter to inject the correlation id into logs
+* A template context processe to make correlation id available in templates
+* Output correlations id as a header
