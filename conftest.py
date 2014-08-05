@@ -65,5 +65,36 @@ def pytest_configure():
         ),
 
         # Other settings go here
+        LOGGING={
+            'version': 1,
+            'formatters': {
+                'verbose': {
+                    'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(cid)s %(message)s'  # noqa
+                },
+                'simple': {
+                    'format': '%(levelname)s %(message)s'
+                }
+            },
+            'filters': {
+                'cid': {
+                    '()': 'cid.log.CidContextFilter'
+                }
+            },
+            'handlers': {
+                'cid': {
+                    'level': 'DEBUG',
+                    'class': 'logging.StreamHandler',
+                    'formatter': 'verbose',
+                    'filters': ['cid']
+                }
+            },
+            'loggers': {
+                'cid': {
+                    'handlers': ['cid'],
+                    'propagate': True,
+                    'level': 'DEBUG'
+                }
+            }
+        }
     )
     settings.configure(**BASE_SETTINGS)
