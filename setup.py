@@ -28,8 +28,8 @@ setup(
     version=version,
     description="""Correlation IDs in Django for debugging requests""",
     long_description=readme + '\n\n' + history,
-    author='Francis Reyes',
-    author_email='francis.mark.reyes@gmail.com',
+    author='Snowball One',
+    author_email='opensource@snowballone.com.au',
     url='https://github.com/snowball-digital/cid',
     packages=[
         'cid',
