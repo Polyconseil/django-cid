@@ -20,3 +20,9 @@ Contents:
    authors
    history
    modules
+
+.. warning::
+
+   Django Correlation Ids currently makes use of ``threading.local``. If this
+   offends your sensibilities please let an know any alternative you may have
+   because it makes us a bit itchy too. :-)
