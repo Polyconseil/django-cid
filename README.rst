@@ -33,3 +33,5 @@ Features
 * Logging filter to inject the correlation id into logs
 * A template context processe to make correlation id available in templates
 * Output correlations id as a header
+
+Documentation can be found at:  http://django-correlation-id.readthedocs.org/
