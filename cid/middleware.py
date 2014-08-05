@@ -17,7 +17,7 @@ class CidMiddleware(object):
     def process_request(self, request):
         cid = request.META.get(self.cid_header, None)
         if cid is None and self.generate_cid:
-            cid = unicode(uuid4())
+            cid = str(uuid4())
         request.correlation_id = cid
         set_cid(request.correlation_id)
 
