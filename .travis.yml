@@ -6,13 +6,6 @@ cache:
   directories:
     - $HOME/.pip-cache
 
-matrix:
-  allow_failures:
-    - env: TOX_ENV=py33-1.6
-    - env: TOX_ENV=py33-1.7
-    - env: TOX_ENV=py34-1.6
-    - env: TOX_ENV=py34-1.7
-
 env:
   global:
     - PIP_OPTS="--download-cache $HOME/.pip-cache"
