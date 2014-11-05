@@ -25,3 +25,4 @@ class CidMiddleware(object):
         cid = get_cid()
         if cid:
             response[self.cid_header] = cid
+        return response
