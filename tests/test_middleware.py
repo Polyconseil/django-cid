@@ -56,7 +56,7 @@ class TestCidMiddleware(TestCase):
         request = Mock()
         response = {}
         middleware = CidMiddleware()
-        middleware.process_response(request, response)
+        response = middleware.process_response(request, response)
         self.assertEqual(response['X_CORRELATION_ID'], self.cid)
 
     @patch('cid.middleware.get_cid')
@@ -65,5 +65,5 @@ class TestCidMiddleware(TestCase):
         request = Mock()
         response = {}
         middleware = CidMiddleware()
-        middleware.process_response(request, response)
+        response = middleware.process_response(request, response)
         self.assertNotIn('X_CORRELATION_ID', response.keys())
