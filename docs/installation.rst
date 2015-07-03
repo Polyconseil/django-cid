@@ -4,7 +4,7 @@ Installation
 
 At the command line::
 
-    $ pip install cid
+    $ pip install django-cid
 
 You will need to add ``cid`` to your list of installed apps.
 
