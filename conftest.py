@@ -1,14 +1,15 @@
 import os
 import sys
 
-from django.conf import settings
+from django import conf
 from django.core.files import temp as tempfile
-# from django.utils.translation import ugettext_lazy as _
 
 
 sys.path.insert(0, os.path.dirname(__file__))
 
-location = lambda x: os.path.join(os.path.dirname(os.path.realpath(__file__)), x)  # noqa
+
+def location(x):
+    os.path.join(os.path.dirname(os.path.realpath(__file__)), x)
 
 
 def pytest_configure():
@@ -97,4 +98,4 @@ def pytest_configure():
             }
         }
     )
-    settings.configure(**BASE_SETTINGS)
+    conf.settings.configure(**BASE_SETTINGS)

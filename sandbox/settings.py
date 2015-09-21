@@ -1,17 +1,12 @@
-"""
-Django settings for sandbox project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/dev/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/dev/ref/settings/
-"""
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-location = lambda x: os.path.join(os.path.dirname(os.path.realpath(__file__)), x)  # noqa
+
+
+def location(x):
+    os.path.join(os.path.dirname(os.path.realpath(__file__)), x)
 
 
 # Quick-start development settings - unsuitable for production
