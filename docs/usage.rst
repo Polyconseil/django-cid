@@ -83,8 +83,8 @@ e.g.
             },
             'simple': {
                 'format': '[cid: %(cid)s] %(levelname)s %(message)s'
-            }
-        }
+            },
+        },
         'handlers': {
             'file': {
                 'level': 'DEBUG',
@@ -93,11 +93,11 @@ e.g.
                 'formatter': 'verbose',
             },
         },
-        filters: {
+        'filters': {
             'correlation': {
                 (): 'cid.log.CidContextFilter'
-            }
-        }
+            },
+        },
         'loggers': {
             'django.request': {
                 'handlers': ['file'],
