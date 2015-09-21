@@ -2,11 +2,11 @@
 Django Correlation IDs
 ======================
 
-.. image:: https://travis-ci.org/snowball-digital/cid.png?branch=master
-    :target: https://travis-ci.org/snowball-digital/cid
+.. image:: https://travis-ci.org/snowball-one/cid.png?branch=master
+    :target: https://travis-ci.org/snowball-one/cid
 
-.. image:: https://coveralls.io/repos/snowball-digital/cid/badge.png?branch=master
-    :target: https://coveralls.io/r/snowball-digital/cid?branch=master
+.. image:: https://coveralls.io/repos/snowball-one/cid/badge.png?branch=master
+    :target: https://coveralls.io/r/snowball-one/cid?branch=master
 
 
 Logging is important. Anyone who has had a call at 3am to say the site is down
