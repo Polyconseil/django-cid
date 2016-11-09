@@ -4,15 +4,19 @@ python:
 
 env:
   matrix:
+    - TOX_ENV=py27-1.10
+    - TOX_ENV=py34-1.10
+    - TOX_ENV=py35-1.10
+    - TOX_ENV=py27-1.9
+    - TOX_ENV=py34-1.9
+    - TOX_ENV=py35-1.9
     - TOX_ENV=py27-1.8
-    - TOX_ENV=py27-1.7
-    - TOX_ENV=py27-1.6
     - TOX_ENV=py33-1.8
-    - TOX_ENV=py33-1.7
-    - TOX_ENV=py33-1.6
     - TOX_ENV=py34-1.8
+    - TOX_ENV=py35-1.8
+    - TOX_ENV=py27-1.7
+    - TOX_ENV=py33-1.7
     - TOX_ENV=py34-1.7
-    - TOX_ENV=py34-1.6
 
 install:
   - pip install -U setuptools wheel
