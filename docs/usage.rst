@@ -26,6 +26,15 @@ used by putting a value into settings for the ``CID_HEADER``. e.g.:
 
     CID_HEADER = 'X_MY_CID_HEADER'
 
+.. note::
+
+    Most WSGI implementations sanitize HTTP headers by appending an
+    ``HTTP_`` prefix and replacing ``-`` by ``_``. For example, an
+    incoming ``X-Correlation-Id`` header would be available as
+    ``HTTP_X_CORRELATION_ID`` in Django. When using such a WSGI server
+    in front of Django, the latter, sanitized value should be used in
+    the settings.
+
 You can also configure Django Correlation Id to generate it's own correlation
 id if one if not found in the header. For this set ``CID_GENERATE`` to true in
 you settings file:
