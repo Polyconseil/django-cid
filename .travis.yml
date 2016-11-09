@@ -2,14 +2,7 @@ language: python
 python:
   - "2.7"
 
-cache:
-  directories:
-    - $HOME/.pip-cache
-
 env:
-  global:
-    - PIP_OPTS="--download-cache $HOME/.pip-cache"
-
   matrix:
     - TOX_ENV=py27-1.8
     - TOX_ENV=py27-1.7
@@ -22,10 +15,10 @@ env:
     - TOX_ENV=py34-1.6
 
 install:
-  - pip install $PIP_OPTS -U setuptools wheel
+  - pip install -U setuptools wheel
   - python setup.py develop
-  - pip install $PIP_OPTS --use-wheel -U -r requirements/ci.txt
-  - pip install $PIP_OPTS tox
+  - pip install --use-wheel -U -r requirements/ci.txt
+  - pip install tox
 
 script:
   - tox -e $TOX_ENV
