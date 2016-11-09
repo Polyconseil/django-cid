@@ -43,6 +43,36 @@ your settings file:
 
     CID_GENERATE = True
 
+By default, Django Correlation Id sets an HTTP header in the HTTP
+response with the same name as configured in ``CID_HEADER``. You may
+customize it with ``CID_RESPONSE_HEADER`` in the settings:
+
+.. code-block:: python
+
+    CID_RESPONSE_HEADER = 'X-Something-Completely-Different'
+
+.. note::
+
+    As indicated in the note above, if Django is behind a WSGI server
+    that sanitizes HTTP headers, you need to customize
+    ``CID_RESPONSE_HEADER`` to have the same header name in the
+    response as in the request.
+
+    .. code-block:: python
+
+        # The header is ``X-Correlation-Id`` but is sanitized by the WSGI server.
+        CID_HEADER = 'HTTP_X_CORRELATION_ID'
+        # Don't use the default value (equal to CID_HEADER) for the response header.
+        CID_RESPONSE_HEADER = 'X-Correlation-Id'
+
+If you don't want the header to appear in the HTTP response, you must
+explicitly set ``CID_REQUEST_HEADER`` to ``None``.
+
+    .. code-block:: python
+
+        # Don't include the header in the HTTP response.
+        CID_RESPONSE_HEADER = None
+
 
 SQL Comments
 ------------

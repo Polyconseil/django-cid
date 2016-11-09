@@ -60,6 +60,26 @@ class TestCidMiddleware(TestCase):
         self.assertEqual(response['X_CORRELATION_ID'], self.cid)
 
     @patch('cid.middleware.get_cid')
+    @override_settings(CID_RESPONSE_HEADER="X-Custom-Name")
+    def test_process_response_custom_header_name(self, get_cid):
+        get_cid.return_value = self.cid
+        request = Mock()
+        response = {}
+        middleware = CidMiddleware()
+        response = middleware.process_response(request, response)
+        self.assertEqual(response['X-Custom-Name'], self.cid)
+
+    @patch('cid.middleware.get_cid')
+    @override_settings(CID_RESPONSE_HEADER=None)
+    def test_process_response_no_header(self, get_cid):
+        get_cid.return_value = self.cid
+        request = Mock()
+        response = {}
+        middleware = CidMiddleware()
+        response = middleware.process_response(request, response)
+        self.assertNotIn('X_CORRELATION_ID', response.keys())
+
+    @patch('cid.middleware.get_cid')
     def test_process_response_with_no_cid(self, get_cid):
         get_cid.return_value = None
         request = Mock()
