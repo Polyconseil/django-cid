@@ -35,9 +35,9 @@ used by putting a value into settings for the ``CID_HEADER``. e.g.:
     in front of Django, the latter, sanitized value should be used in
     the settings.
 
-You can also configure Django Correlation Id to generate it's own correlation
-id if one if not found in the header. For this set ``CID_GENERATE`` to true in
-you settings file:
+You can also configure Django Correlation Id to generate its own correlation
+id if one is not found in the header. For this set ``CID_GENERATE`` to true in
+your settings file:
 
 .. code-block:: python
 
