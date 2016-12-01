@@ -2,6 +2,7 @@
 .cache
 .ropeproject
 *.sublime-*
+.python-version
 
 # Packages
 *.egg
