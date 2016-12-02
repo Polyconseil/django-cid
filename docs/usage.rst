@@ -66,7 +66,7 @@ customize it with ``CID_RESPONSE_HEADER`` in the settings:
         CID_RESPONSE_HEADER = 'X-Correlation-Id'
 
 If you don't want the header to appear in the HTTP response, you must
-explicitly set ``CID_REQUEST_HEADER`` to ``None``.
+explicitly set ``CID_RESPONSE_HEADER`` to ``None``.
 
     .. code-block:: python
 
