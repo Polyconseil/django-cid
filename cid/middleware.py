@@ -1,16 +1,22 @@
 from uuid import uuid4
 from django.conf import settings
 
+try:
+    from django.utils.deprecation import MiddlewareMixin
+except ImportError:  # Django < 1.10
+    MiddlewareMixin = object
+
 from .locals import set_cid, get_cid
 
 
-class CidMiddleware(object):
+class CidMiddleware(MiddlewareMixin):
     """
     Middleware class to extract the correlation id from incoming headers
     and add them to outgoing headers
     """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
+        super(CidMiddleware, self).__init__(*args, **kwargs)
         self.cid_request_header = getattr(
             settings, 'CID_HEADER', 'X_CORRELATION_ID'
         )
