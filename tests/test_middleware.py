@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.utils import override_settings
 from mock import Mock, patch
@@ -87,3 +88,21 @@ class TestCidMiddleware(TestCase):
         middleware = CidMiddleware()
         response = middleware.process_response(request, response)
         self.assertNotIn('X_CORRELATION_ID', response.keys())
+
+    @override_settings(
+        MIDDLEWARE_CLASSES=('cid.middleware.CidMiddleware', ),
+        CID_GENERATE=True,
+    )
+    def test_integration(self):
+        """Assert the middleware works with the Django initialization"""
+        # First call generates an new Correlation ID
+        response = self.client.get(reverse('ping'))  # comes from the sandbox
+        cid = response.get('X_CORRELATION_ID')
+        self.assertIsNotNone(cid)
+
+        # Later calls with the header will keep it
+        response = self.client.get(
+            reverse('ping'),  # comes from the sandbox
+            **{'X_CORRELATION_ID': cid}
+        )
+        self.assertEqual(response['X_CORRELATION_ID'], cid)
