@@ -1,4 +1,7 @@
-from django.core.urlresolvers import reverse
+try:
+    from django.urls import reverse
+except ImportError:
+    from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.utils import override_settings
 from mock import Mock, patch
@@ -90,8 +93,10 @@ class TestCidMiddleware(TestCase):
         self.assertNotIn('X_CORRELATION_ID', response.keys())
 
     @override_settings(
-        MIDDLEWARE_CLASSES=('cid.middleware.CidMiddleware', ),
+        MIDDLEWARE=('cid.middleware.CidMiddleware', ),
         CID_GENERATE=True,
+        # FIXME: this is only necessary until Django-1.8 support is dropped
+        MIDDLEWARE_CLASSES=('cid.middleware.CidMiddleware', ),
     )
     def test_integration(self):
         """Assert the middleware works with the Django initialization"""
