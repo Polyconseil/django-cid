@@ -134,7 +134,7 @@ e.g.
         },
         'filters': {
             'correlation': {
-                (): 'cid.log.CidContextFilter'
+                '()': 'cid.log.CidContextFilter'
             },
         },
         'loggers': {
