@@ -168,7 +168,7 @@ will need to add the context processor to your settings:
         "django.core.context_processors.static",
         "django.core.context_processors.tz",
         "django.contrib.messages.context_processors.messages",
-        "cid.context_processos.cid_context_processor",
+        "cid.context_processors.cid_context_processor",
     )
 
 This will place the context variable ``correlation_id`` in your template
