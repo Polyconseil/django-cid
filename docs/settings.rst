@@ -16,3 +16,7 @@ Settings
     ``CID_GENERATE``
         Tell the cid middleware to generate a correlation id if it doesn't
         already exist. Default value: ``False``.
+
+    ``CID_SQL_COMMENT_FORMATTER``
+        Function taking a cid as argument and returning the str that will be
+        added as a SQL comment. Default returned value: ``cid: MY_CID``.

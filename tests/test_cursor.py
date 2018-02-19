@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.test.utils import override_settings
 from mock import Mock, patch
 
 from cid.cursor import CidCursorWrapper
@@ -16,6 +17,16 @@ class TestCidCursor(TestCase):
     def test_adds_comment(self, get_cid):
         get_cid.return_value = 'testing-cursor'
         expected = "/* cid: testing-cursor */\nSELECT 1;"
+        self.assertEqual(
+            expected,
+            self.cursor_wrapper.add_comment("SELECT 1;")
+        )
+
+    @override_settings(CID_SQL_COMMENT_FORMATTER=lambda cid: 'correlation_id={}'.format(cid))
+    @patch('cid.cursor.get_cid')
+    def test_adds_comment_setting_overriden(self, get_cid):
+        get_cid.return_value = 'testing-cursor'
+        expected = "/* correlation_id=testing-cursor */\nSELECT 1;"
         self.assertEqual(
             expected,
             self.cursor_wrapper.add_comment("SELECT 1;")
