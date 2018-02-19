@@ -27,3 +27,5 @@ History
   enabled, so that it's available even if the middleware is not used
 * Fix support of Django 1.11 in database backends.
 * Add PostGIS database backend.
+* Add ``CID_SQL_COMMENT_TEMPLATE`` to customize how the cid is
+  included as comments in SQL queries.

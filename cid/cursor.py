@@ -1,4 +1,8 @@
+from django.conf import settings
 from .locals import get_cid
+
+
+DEFAULT_CID_SQL_COMMENT_TEMPLATE = 'cid: {cid}'
 
 
 class CidCursorWrapper(object):
@@ -24,10 +28,13 @@ class CidCursorWrapper(object):
         self.close()
 
     def add_comment(self, sql):
+        cid_sql_template = getattr(
+            settings, 'CID_SQL_COMMENT_TEMPLATE', DEFAULT_CID_SQL_COMMENT_TEMPLATE
+        )
         cid = get_cid()
         if cid:
             cid = cid.replace('/*', '\/\*').replace('*/', '\*\/')
-            return "/* cid: {} */\n{}".format(cid, sql)
+            return "/* {} */\n{}".format(cid_sql_template.format(cid=cid), sql)
         return sql
 
     # The following methods cannot be implemented in __getattr__, because the
