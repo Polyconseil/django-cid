@@ -14,6 +14,6 @@ History
 * Made CID repsonse header configurable, and optional (thanks @dbaty)
 
 0.2.0 (2016-12-06)
-+++++++++++++++++
+++++++++++++++++++
 
 * Added support for Django 1.10 middleware (thanks @qbey)

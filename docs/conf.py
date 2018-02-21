@@ -252,3 +252,7 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
+
+# Make autodoc work with Django
+os.environ['DJANGO_SETTINGS_MODULE'] = 'sandbox.settings'
+suppress_warnings = ['image.not_readable']

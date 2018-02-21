@@ -19,7 +19,7 @@ is quite a simple one. Incoming requests are assigned a unique id (a uuid).
 This can either happen in say your public facing web server (e.g. nginx) or be
 applied as soon as it hits django.
 
-This ``cid`` is then available throught the django request/response cycle. We
+This ``cid`` is then available through the django request/response cycle. We
 provide filters for logging witch adds the ``cid`` to the logging record so you
 can add it to your formatting string. We also provide wrappers around all the
 standard database backends which adds the ``cid`` as a comment before each SQL
@@ -31,7 +31,7 @@ Features
 * Processing/Generation of a correlation id
 * Database wrappers to add correlation id to each sql call
 * Logging filter to inject the correlation id into logs
-* A template context processe to make correlation id available in templates
+* A template context processor to make correlation id available in templates
 * Output correlation id as a header
 
 Documentation can be found at:  http://django-correlation-id.readthedocs.org/
