@@ -1,31 +1,24 @@
 language: python
 python:
   - "2.7"
-
+  - "3.3"
+  - "3.4"
+  - "3.5"
 env:
-  matrix:
-    - TOX_ENV=py27-1.10
-    - TOX_ENV=py34-1.10
-    - TOX_ENV=py35-1.10
-    - TOX_ENV=py27-1.9
-    - TOX_ENV=py34-1.9
-    - TOX_ENV=py35-1.9
-    - TOX_ENV=py27-1.8
-    - TOX_ENV=py33-1.8
-    - TOX_ENV=py34-1.8
-    - TOX_ENV=py35-1.8
-    - TOX_ENV=py27-1.7
-    - TOX_ENV=py33-1.7
-    - TOX_ENV=py34-1.7
+  - DJANGO="1.7"
+  - DJANGO="1.8"
+  - DJANGO="1.9"
+  - DJANGO="1.10"
 
 install:
   - pip install -U setuptools wheel
   - python setup.py develop
   - pip install --use-wheel -U -r requirements/ci.txt
   - pip install tox
+  - pip install tox-travis
 
 script:
-  - tox -e $TOX_ENV
+  - tox
 
 after_success:
   - coveralls
