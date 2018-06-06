@@ -24,7 +24,7 @@ readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
-    name='django-cid',
+    name='mbq-django-cid',
     version=version,
     description="""Correlation IDs in Django for debugging requests""",
     long_description=readme + '\n\n' + history,
