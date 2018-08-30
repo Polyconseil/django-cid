@@ -3,6 +3,7 @@ from django.test import TestCase
 from django.test.utils import override_settings
 from mock import Mock, patch
 
+import cid.locals
 from cid.middleware import CidMiddleware
 
 
@@ -10,6 +11,10 @@ class TestCidMiddleware(TestCase):
 
     def setUp(self):
         self.cid = 'test-cid'
+
+    def tearDown(self):
+        super().tearDown()
+        cid.locals.set_cid(None)  # don't leak cid between each test
 
     def get_mock_request(self, cid=None):
         request = Mock()
@@ -32,7 +37,7 @@ class TestCidMiddleware(TestCase):
         middleware.process_request(request)
         set_cid.assert_called_with(None)
 
-    @patch('cid.middleware.uuid4')
+    @patch('uuid.uuid4')
     @patch('cid.middleware.set_cid')
     @override_settings(CID_GENERATE=True)
     def test_process_request_generates_uuid(self, set_cid, uuid4):

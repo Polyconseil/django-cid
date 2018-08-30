@@ -1,5 +1,3 @@
-from uuid import uuid4
-
 from django.conf import settings
 from django.utils.deprecation import MiddlewareMixin
 
@@ -20,14 +18,13 @@ class CidMiddleware(MiddlewareMixin):
         self.cid_response_header = getattr(
             settings, 'CID_RESPONSE_HEADER', self.cid_request_header
         )
-        self.generate_cid = getattr(settings, 'CID_GENERATE', False)
 
     def process_request(self, request):
         cid = request.META.get(self.cid_request_header, None)
-        if cid is None and self.generate_cid:
-            cid = str(uuid4())
+        if cid is None:
+            cid = get_cid()
         request.correlation_id = cid
-        set_cid(request.correlation_id)
+        set_cid(cid)
 
     def process_response(self, request, response):
         cid = get_cid()

@@ -1,5 +1,7 @@
 from threading import local
+import uuid
 
+from django.conf import settings
 
 _thread_locals = local()
 
@@ -15,4 +17,8 @@ def get_cid():
     """
     Retrieves the currently set Correlation Id
     """
-    return getattr(_thread_locals, 'CID', None)
+    cid = getattr(_thread_locals, 'CID', None)
+    if cid is None and getattr(settings, 'CID_GENERATE', False):
+        cid = str(uuid.uuid4())
+        set_cid(cid)
+    return cid

@@ -21,5 +21,7 @@ History
 0.3 (unreleased)
 ++++++++++++++++
 
-* Drop support of Django < 1.11
-* Drop support of Python 2.6
+* Drop support of Django < 1.11.
+* Drop support of Python 2.6.
+* Generate cid outside of the middleware when ``GENERATE_CID`` is
+  enabled, so that it's available even if the middleware is not used
