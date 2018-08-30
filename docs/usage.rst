@@ -97,6 +97,8 @@ mysql
     cid.backends.mysql
 oracle
     cid.backends.oracle
+postgis
+    cid.backends.postgis
 postgresql
     cid.backends.postgresql
 sqlite3
