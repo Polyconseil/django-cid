@@ -1,10 +1,7 @@
 from uuid import uuid4
-from django.conf import settings
 
-try:
-    from django.utils.deprecation import MiddlewareMixin
-except ImportError:  # Django < 1.10
-    MiddlewareMixin = object
+from django.conf import settings
+from django.utils.deprecation import MiddlewareMixin
 
 from .locals import set_cid, get_cid
 

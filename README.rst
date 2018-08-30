@@ -35,3 +35,15 @@ Features
 * Output correlation id as a header
 
 Documentation can be found at:  http://django-correlation-id.readthedocs.org/
+
+
+Supported versions
+------------------
+
+We currently support the following versions:
+
+- Django 1.11: Python 2.7 or Python >=3.4
+
+Other versions may work but are not supported.
+
+Django 2 support will soon be added.
