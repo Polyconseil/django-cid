@@ -7,6 +7,6 @@ from ...cursor import CidCursorWrapper
 
 class DatabaseWrapper(BaseSqliteWrapper):
 
-    def create_cursor(self):
-        base_cursor = super(DatabaseWrapper, self).create_cursor()
+    def create_cursor(self, name):
+        base_cursor = super(DatabaseWrapper, self).create_cursor(name)
         return CidCursorWrapper(base_cursor)
