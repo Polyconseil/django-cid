@@ -2,7 +2,9 @@
 Credits
 =======
 
-* Jonathan Moss <jonathan.moss@snowballone.com.au>
+Original author: Jonathan Moss <jonathan.moss@snowballone.com.au>
+Current maintainers: the (mostly) nice people at Polyconseil
+
+Contributors:
+
 * Francis Reyes <francis.reyes@snowballone.com.au>
-* Damien Baty <github: @dbaty>
-* BEY Quentin <github: @qbey>

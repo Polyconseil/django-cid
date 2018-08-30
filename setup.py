@@ -29,7 +29,8 @@ setup(
     description="""Correlation IDs in Django for debugging requests""",
     long_description=readme + '\n\n' + history,
     author='Snowball One',
-    author_email='opensource@snowballone.com.au',
+    maintainer="Polyconseil",
+    maintainer_email="opensource+django-cid@polyconseil.fr",
     url='https://github.com/snowball-digital/cid',
     packages=[
         'cid',
