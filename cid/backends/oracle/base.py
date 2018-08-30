@@ -7,6 +7,6 @@ from ...cursor import CidCursorWrapper
 
 class DatabaseWrapper(BaseOracleWrapper):
 
-    def create_cursor(self, name):
+    def create_cursor(self, name=None):
         base_cursor = super(DatabaseWrapper, self).create_cursor(name)
         return CidCursorWrapper(base_cursor)
