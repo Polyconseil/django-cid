@@ -6,5 +6,5 @@ from ...cursor import CidCursorWrapper
 class DatabaseWrapper(BaseMySQLWrapper):
 
     def create_cursor(self, name):
-        base_cursor = super(DatabaseWrapper, self).create_cursor(name)
+        base_cursor = super().create_cursor(name)
         return CidCursorWrapper(base_cursor)

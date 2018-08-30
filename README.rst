@@ -42,7 +42,7 @@ Supported versions
 
 We currently support the following versions:
 
-- Django 1.11: Python 2.7 or Python >=3.4
+- Django 1.11 with Python >=3.4.
 
 Other versions may work but are not supported.
 
