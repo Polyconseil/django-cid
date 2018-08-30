@@ -18,7 +18,7 @@ History
 
 * Added support for Django 1.10 middleware (thanks @qbey)
 
-0.3 (unreleased)
+1.0 (unreleased)
 ++++++++++++++++
 
 * Drop support of Django < 1.11.
