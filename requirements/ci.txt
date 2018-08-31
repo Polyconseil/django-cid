@@ -1,7 +1,6 @@
 -r base.txt
 coverage
 coveralls
-mock>=1.0.1
 pytest>=2.6.0
 pytest-cache>=1.0
 pytest-cov>=1.7.0

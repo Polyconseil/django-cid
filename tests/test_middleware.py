@@ -1,7 +1,8 @@
+from unittest import mock
+
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.utils import override_settings
-from mock import Mock, patch
 
 import cid.locals
 from cid.middleware import CidMiddleware
@@ -22,7 +23,7 @@ def get_response(request):
 
 
 def make_request(cid=None, header_name='X_CORRELATION_ID'):
-    request = Mock()
+    request = mock.Mock()
     request.META = {}
     if cid:
         request.META[header_name] = cid
@@ -52,7 +53,7 @@ class TestCidMiddleware(TestCase):
         self.assertEqual(response.headers, {})
 
     @override_settings(CID_GENERATE=True)
-    @patch('uuid.uuid4')
+    @mock.patch('uuid.uuid4')
     def test_generate_cid(self, uuid4):
         uuid4.return_value = 'generated-cid'
         request = make_request(cid=None)
