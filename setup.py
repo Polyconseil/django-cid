@@ -28,7 +28,7 @@ setup(
     author='Snowball One',
     maintainer="Polyconseil",
     maintainer_email="opensource+django-cid@polyconseil.fr",
-    url='https://github.com/snowball-digital/cid',
+    url='https://github.com/Polyconseil/django-cid',
     packages=[
         'cid',
     ],
