@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 import logging
+
 from cid.locals import get_cid
 
 
