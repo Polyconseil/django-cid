@@ -7,16 +7,27 @@ Usage
 Django Correlation Ids have a number of options for usage covering logging,
 SQL comments, and a template context processor.
 
-All of these rely on the usage of a piece of middleware. To configure the
-middleware simply add the following to your list of MIDDLEWARE_CLASSES in
-your settings file:
+All of these rely on the usage of a piece of middleware. To configure
+the middleware, simply add the following to ``MIDDLEWARE`` in your
+settings file:
 
 .. code-block:: python
 
-    MIDDLEWARE_CLASSES = (
+    MIDDLEWARE = (
         'cid.middleware.CidMiddleware',
-        # other middleware
+        # other middlewares
     )
+
+If you really must use the old ``MIDDLEWARE_CLASSES`` setting,
+include the old-style class instead:
+
+.. code-block:: python
+
+    MIDDLEWARE = (
+        'cid.middleware.CidOldStyleMiddleware',
+        # other middlewares
+    )
+
 
 By default the middleware will look for the correlation id in an incoming
 request header called ``X_CORRELATION_ID``. An alternative header name can be

@@ -7,99 +7,92 @@ import cid.locals
 from cid.middleware import CidMiddleware
 
 
-class TestCidMiddleware(TestCase):
+class DummyResponse:
+    def __init__(self, request):
+        self.headers = {}
+        self.request = request
+    def __getitem__(self, header):
+        return self.headers[header]
+    def __setitem__(self, header, value):
+        self.headers[header] = value
 
-    def setUp(self):
-        self.cid = 'test-cid'
+
+def get_response(request):
+    return DummyResponse(request)
+
+
+def make_request(cid=None, header_name='X_CORRELATION_ID'):
+    request = Mock()
+    request.META = {}
+    if cid:
+        request.META[header_name] = cid
+    return request
+
+
+class TestCidMiddleware(TestCase):
 
     def tearDown(self):
         super().tearDown()
         cid.locals.set_cid(None)  # don't leak cid between each test
 
-    def get_mock_request(self, cid=None):
-        request = Mock()
-        request.META = {}
-        if cid:
-            request.META['X_CORRELATION_ID'] = cid
-        return request
+    def test_with_cid_from_upstream(self):
+        request = make_request('cid-from-upstream')
+        middleware = CidMiddleware(get_response=get_response)
+        response = middleware(request)
+        self.assertEqual(request.correlation_id, 'cid-from-upstream')
+        self.assertEqual(cid.locals.get_cid(), 'cid-from-upstream')
+        self.assertEqual(response['X_CORRELATION_ID'], 'cid-from-upstream')
 
-    @patch('cid.middleware.set_cid')
-    def test_process_request(self, set_cid):
-        request = self.get_mock_request(self.cid)
-        middleware = CidMiddleware()
-        middleware.process_request(request)
-        set_cid.assert_called_with(self.cid)
+    def test_no_cid_from_upstream(self):
+        request = make_request(cid=None)
+        middleware = CidMiddleware(get_response=get_response)
+        response = middleware(request)
+        self.assertIsNone(request.correlation_id, None)
+        self.assertIsNone(cid.locals.get_cid(), None)
+        self.assertEqual(response.headers, {})
 
-    @patch('cid.middleware.set_cid')
-    def test_process_request_with_no_header(self, set_cid):
-        request = self.get_mock_request()
-        middleware = CidMiddleware()
-        middleware.process_request(request)
-        set_cid.assert_called_with(None)
-
-    @patch('uuid.uuid4')
-    @patch('cid.middleware.set_cid')
     @override_settings(CID_GENERATE=True)
-    def test_process_request_generates_uuid(self, set_cid, uuid4):
-        uuid4.return_value = '6fa459ea-ee8a-3ca4-894e-db77e160355e'
-        request = self.get_mock_request()
-        middleware = CidMiddleware()
-        middleware.process_request(request)
-        set_cid.assert_called_with('6fa459ea-ee8a-3ca4-894e-db77e160355e')
+    @patch('uuid.uuid4')
+    def test_generate_cid(self, uuid4):
+        uuid4.return_value = 'generated-cid'
+        request = make_request(cid=None)
+        middleware = CidMiddleware(get_response=get_response)
+        response = middleware(request)
+        self.assertEqual(request.correlation_id, 'generated-cid')
+        self.assertEqual(cid.locals.get_cid(), 'generated-cid')
+        self.assertEqual(response['X_CORRELATION_ID'], 'generated-cid')
 
-    @patch('cid.middleware.set_cid')
-    @override_settings(CID_HEADER='A_TEST_HEADER')
-    def test_process_request_with_custom_header(self, set_cid):
-        request = Mock()
-        request.META = {'A_TEST_HEADER': 'different-cid'}
-        middleware = CidMiddleware()
-        middleware.process_request(request)
-        set_cid.assert_called_with('different-cid')
+    @override_settings(CID_HEADER='X_CUSTOM_HEADER')
+    def test_custom_request_header(self):
+        request = make_request('cid-from-upstream', header_name='X_CUSTOM_HEADER')
+        middleware = CidMiddleware(get_response=get_response)
+        response = middleware(request)
+        self.assertEqual(request.correlation_id, 'cid-from-upstream')
+        self.assertEqual(cid.locals.get_cid(), 'cid-from-upstream')
+        self.assertEqual(response['X_CUSTOM_HEADER'], 'cid-from-upstream')
 
-    @patch('cid.middleware.get_cid')
-    def test_process_response(self, get_cid):
-        get_cid.return_value = self.cid
-        request = Mock()
-        response = {}
-        middleware = CidMiddleware()
-        response = middleware.process_response(request, response)
-        self.assertEqual(response['X_CORRELATION_ID'], self.cid)
+    @override_settings(CID_RESPONSE_HEADER='X_CUSTOM_HEADER')
+    def test_custom_response_header(self):
+        request = make_request('cid-from-upstream')
+        middleware = CidMiddleware(get_response=get_response)
+        response = middleware(request)
+        self.assertEqual(request.correlation_id, 'cid-from-upstream')
+        self.assertEqual(cid.locals.get_cid(), 'cid-from-upstream')
+        self.assertEqual(response['X_CUSTOM_HEADER'], 'cid-from-upstream')
 
-    @patch('cid.middleware.get_cid')
-    @override_settings(CID_RESPONSE_HEADER="X-Custom-Name")
-    def test_process_response_custom_header_name(self, get_cid):
-        get_cid.return_value = self.cid
-        request = Mock()
-        response = {}
-        middleware = CidMiddleware()
-        response = middleware.process_response(request, response)
-        self.assertEqual(response['X-Custom-Name'], self.cid)
-
-    @patch('cid.middleware.get_cid')
     @override_settings(CID_RESPONSE_HEADER=None)
-    def test_process_response_no_header(self, get_cid):
-        get_cid.return_value = self.cid
-        request = Mock()
-        response = {}
-        middleware = CidMiddleware()
-        response = middleware.process_response(request, response)
-        self.assertNotIn('X_CORRELATION_ID', response.keys())
+    def test_no_response_header(self):
+        request = make_request('cid-from-upstream')
+        middleware = CidMiddleware(get_response=get_response)
+        response = middleware(request)
+        self.assertEqual(request.correlation_id, 'cid-from-upstream')
+        self.assertEqual(cid.locals.get_cid(), 'cid-from-upstream')
+        self.assertEqual(response.headers, {})
 
-    @patch('cid.middleware.get_cid')
-    def test_process_response_with_no_cid(self, get_cid):
-        get_cid.return_value = None
-        request = Mock()
-        response = {}
-        middleware = CidMiddleware()
-        response = middleware.process_response(request, response)
-        self.assertNotIn('X_CORRELATION_ID', response.keys())
 
-    @override_settings(
-        MIDDLEWARE_CLASSES=('cid.middleware.CidMiddleware', ),
-        CID_GENERATE=True,
-    )
-    def test_integration(self):
-        """Assert the middleware works with the Django initialization"""
+class TestIntegration(TestCase):
+
+    def _test_integration(self):
         # First call generates an new Correlation ID
         response = self.client.get(reverse('ping'))  # comes from the sandbox
         cid = response.get('X_CORRELATION_ID')
@@ -111,3 +104,17 @@ class TestCidMiddleware(TestCase):
             **{'X_CORRELATION_ID': cid}
         )
         self.assertEqual(response['X_CORRELATION_ID'], cid)
+
+    @override_settings(
+        MIDDLEWARE=('cid.middleware.CidMiddleware', ),
+        CID_GENERATE=True,
+    )
+    def test_integration(self):
+        self._test_integration()
+
+    @override_settings(
+        MIDDLEWARE_CLASSES=('cid.middleware.CidOldStyleMiddleware', ),
+        CID_GENERATE=True,
+    )
+    def test_integration_with_old_style_middleware_classes(self):
+        self._test_integration()

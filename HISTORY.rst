@@ -46,6 +46,13 @@ can migrate.
   replace it by `cid.apps.CidAppConfig`. If you did not, add the
   latter.
 
+* |backward-incompatible| Drop compatibility with
+  ``MIDDLEWARE_CLASSES``.  You should use the ``MIDDLEWARE``
+  setting. If you already did, no change is necessary.
+
+  If you really must use the old ``MIDDLEWARE_CLASSES`` setting,
+  include ``CidOldStyleMiddleware`` instead of ``CidMiddleware``.
+
 
 
 .. role:: raw-html(raw)
