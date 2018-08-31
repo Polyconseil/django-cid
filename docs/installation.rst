@@ -6,13 +6,13 @@ At the command line::
 
     $ pip install django-cid
 
-You will need to add ``cid`` to your list of installed apps.
+You will need to add ``cid.apps.CidAppConfig`` to your list of installed apps.
 
 .. code-block:: python
 
     INSTALLED_APPS = (
         # some apps
-        'cid',
+        'cid.apps.CidAppConfig',
         # some other apps
     )
 

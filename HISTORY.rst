@@ -21,11 +21,35 @@ History
 1.0 (unreleased)
 ++++++++++++++++
 
-* Drop support of Django < 1.11.
-* Drop support of Python 2.
+**Warning:** this release includes changes that are not backward
+compatible. Be sure to read the details below to know if and how you
+can migrate.
+
+* |backward-incompatible| Drop support of Django < 1.11.
+
+* |backward-incompatible| Drop support of Python 2.
+
 * Generate cid outside of the middleware when ``GENERATE_CID`` is
-  enabled, so that it's available even if the middleware is not used
+  enabled, so that it's available even if the middleware is not used.
+
 * Fix support of Django 1.11 in database backends.
+
 * Add PostGIS database backend.
+
 * Add ``CID_SQL_COMMENT_TEMPLATE`` to customize how the cid is
   included as comments in SQL queries.
+
+* |backward-incompatible| Change the app name to be used in
+  INSTALLED_APPS.
+
+  Migration from version 0.x: if you had `cid` in `INSTALLED_APPS`,
+  replace it by `cid.apps.CidAppConfig`. If you did not, add the
+  latter.
+
+
+
+.. role:: raw-html(raw)
+
+.. |backward-incompatible| raw:: html
+
+    <span style="background-color: #ffffbc; padding: 0.3em; font-weight: bold;">backward incompatible</span>
