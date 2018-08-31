@@ -2,8 +2,8 @@
 Django Correlation IDs
 ======================
 
-.. image:: https://travis-ci.org/Polyconseil/cid.png?branch=master
-    :target: https://travis-ci.org/Polyconseil/cid
+.. image:: https://travis-ci.org/Polyconseil/django-cid.png?branch=master
+    :target: https://travis-ci.org/Polyconseil/django-cid
 
 
 Logging is important. Anyone who has had a call at 3am to say the site is down
