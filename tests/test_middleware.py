@@ -1,8 +1,10 @@
+import unittest
 from unittest import mock
 
-from django.core.urlresolvers import reverse
+from django import VERSION as DJANGO_VERSION
 from django.test import TestCase
 from django.test.utils import override_settings
+from django.urls import reverse
 
 import cid.locals
 from cid.middleware import CidMiddleware
@@ -113,6 +115,9 @@ class TestIntegration(TestCase):
     def test_integration(self):
         self._test_integration()
 
+    @unittest.skipIf(
+        DJANGO_VERSION[:2] >= (2, 0),
+        "Support of MIDDLEWARE_CLASSES has been removed in Django 2")
     @override_settings(
         MIDDLEWARE_CLASSES=('cid.middleware.CidOldStyleMiddleware', ),
         CID_GENERATE=True,

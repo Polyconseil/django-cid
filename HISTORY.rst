@@ -29,6 +29,9 @@ can migrate.
 
 * |backward-incompatible| Drop support of Python 2.
 
+* Add support of Django 2. Version 0.x could already be used with
+  Django 2 but tests were not run against it. They now are.
+
 * Generate cid outside of the middleware when ``GENERATE_CID`` is
   enabled, so that it's available even if the middleware is not used.
 

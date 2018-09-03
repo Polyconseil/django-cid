@@ -39,8 +39,8 @@ Supported versions
 
 We currently support the following versions:
 
-- Django 1.11 with Python >=3.4.
+- Django 1.11 with Python >= 3.4;
+- Django 2.0 with Python >= 3.4;
+- Django 2.1 with Python >= 3.5.
 
 Other versions may work but are not supported.
-
-Django 2 support will soon be added.

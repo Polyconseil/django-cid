@@ -38,6 +38,7 @@ class CidMiddleware:
         return self._process_response(response)
 
 
+# FIXME: to be removed once we remove support of Django 1.11
 class CidOldStyleMiddleware(CidMiddleware):
     """Support for the old ``MIDDLEWARE_CLASSES`` setting."""
 
