@@ -1,14 +1,4 @@
 -r base.txt
-coverage
-coveralls
-pytest>=2.6.0
-pytest-cache>=1.0
-pytest-cov>=1.7.0
-pytest-django>=2.6.2
-pytest-sugar>=0.3.4
-flake8>=2.2.2
-tox>=1.7.2
-WebTest>=2.0.15
-django-webtest>=1.7.7
-
-# Additional test requirements go here
+pytest
+pytest-django
+tox
