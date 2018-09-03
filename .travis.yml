@@ -5,14 +5,14 @@ python:
   - 3.6
 env:
   - DJANGO="1.11"
+  - DJANGO="2.0"
+  - DJANGO="2.1"
 
 install:
-  - pip install -r requirements/ci.txt
-  - pip install -e .
-  - pip install tox-travis
+  - pip install tox tox-travis
 
 script:
   - tox
 
-after_success:
-  - coveralls
+matrix:
+  fast_finish: true
