@@ -1,0 +1,7 @@
+sphinx
+
+django
+
+cx_oracle
+mysqlclient
+psycopg2
