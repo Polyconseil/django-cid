@@ -5,7 +5,7 @@ from .locals import get_cid
 DEFAULT_CID_SQL_COMMENT_TEMPLATE = 'cid: {cid}'
 
 
-class CidCursorWrapper(object):
+class CidCursorWrapper:
     """
     A cursor wrapper that attempts to add a cid comment to each query
     """
