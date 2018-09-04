@@ -3,6 +3,7 @@ from unittest import mock
 from django.test import TestCase
 from django.test.utils import override_settings
 
+import cid.locals
 from cid.cursor import CidCursorWrapper
 
 
@@ -53,3 +54,9 @@ class TestCidCursor(TestCase):
         sql = "SELECT 1;"
         self.cursor_wrapper.executemany(sql, [])
         add_comment.assert_called_with(sql)
+
+    @mock.patch('cid.cursor.get_cid')
+    def test_escape_cid(self, get_cid):
+        get_cid.return_value = '/* a correlation id with funny characters */'
+        expected = '/* cid: \\/\\* a correlation id with funny characters \\*\\/ */\nSELECT 1;'
+        self.assertEqual(self.cursor_wrapper.add_comment('SELECT 1;'), expected)

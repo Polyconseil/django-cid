@@ -3,6 +3,7 @@ import uuid
 
 from django.conf import settings
 
+
 _thread_locals = local()
 
 

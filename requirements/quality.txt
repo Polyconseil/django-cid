@@ -1,0 +1,4 @@
+# `docutils` is needed to check for `setup.py check --restructuredtext`
+docutils
+isort
+pylint

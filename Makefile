@@ -10,5 +10,9 @@ clean:
 docs:
 	sphinx-build -W -n -b html docs ./build/sphinx/html
 
+quality:
+	python setup.py check --strict --metadata --restructuredtext
+	pylint --reports=no setup.py cid
+
 test:
 	py.test tests

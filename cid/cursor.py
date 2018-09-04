@@ -1,4 +1,5 @@
 from django.conf import settings
+
 from .locals import get_cid
 
 
@@ -15,8 +16,7 @@ class CidCursorWrapper:
     def __getattr__(self, attr):
         if attr in self.__dict__:
             return self.__dict__[attr]
-        else:
-            return getattr(self.cursor, attr)
+        return getattr(self.cursor, attr)
 
     def __iter__(self):
         return iter(self.cursor)
@@ -24,7 +24,7 @@ class CidCursorWrapper:
     def __enter__(self):
         return self
 
-    def __exit__(self, type, value, traceback):
+    def __exit__(self, exc_type, exc_value, traceback):
         self.close()
 
     def add_comment(self, sql):
@@ -32,10 +32,13 @@ class CidCursorWrapper:
             settings, 'CID_SQL_COMMENT_TEMPLATE', DEFAULT_CID_SQL_COMMENT_TEMPLATE
         )
         cid = get_cid()
-        if cid:
-            cid = cid.replace('/*', '\/\*').replace('*/', '\*\/')
-            return "/* {} */\n{}".format(cid_sql_template.format(cid=cid), sql)
-        return sql
+        if not cid:
+            return sql
+        # FIXME (dbaty): we could use "--" prefixed comments so that
+        # we would not have to bother with escaping the cid (assuming
+        # it does not contain newline characters).
+        cid = cid.replace('/*', r'\/\*').replace('*/', r'\*\/')
+        return "/* {} */\n{}".format(cid_sql_template.format(cid=cid), sql)
 
     # The following methods cannot be implemented in __getattr__, because the
     # code must run when the method is invoked, not just when it is accessed.

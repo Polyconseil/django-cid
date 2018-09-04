@@ -1,6 +1,7 @@
 from django.conf import settings
 
-from .locals import set_cid, get_cid
+from cid.locals import get_cid
+from cid.locals import set_cid
 
 
 class CidMiddleware:
