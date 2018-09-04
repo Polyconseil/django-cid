@@ -1,39 +1,22 @@
-import os
-import sys
+from setuptools import setup, find_packages
 
-import cid
-
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
-
-version = cid.__version__
-
-if sys.argv[-1] == 'publish':
-    os.system('python setup.py sdist upload')
-    print("You probably want to also tag the version now:")
-    print("  git tag -a %s -m 'version %s'" % (version, version))
-    print("  git push --tags")
-    sys.exit()
 
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
     name='django-cid',
-    version=version,
+    version='1.0.dev0',
     description="""Correlation IDs in Django for debugging requests""",
     long_description=readme + '\n\n' + history,
     author='Snowball One',
     maintainer="Polyconseil",
     maintainer_email="opensource+django-cid@polyconseil.fr",
     url='https://github.com/Polyconseil/django-cid',
-    packages=[
-        'cid',
-    ],
+    packages=find_packages(),
     include_package_data=True,
     install_requires=[
+        'django>=1.11',
     ],
     license="BSD",
     zip_safe=False,
