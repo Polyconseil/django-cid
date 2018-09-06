@@ -1,10 +1,9 @@
-from django.conf.urls import url
 from django.contrib import admin
-
-from . import views
+from django.urls import include, path
+from django.conf.urls import include
 
 
 urlpatterns = (
-    url(r'^ping/$', views.ping_view, name='ping'),
-    url(r'^admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
+    path('', include('testapp.urls')),
 )

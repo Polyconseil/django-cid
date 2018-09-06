@@ -1,0 +1,25 @@
+<h1>Test page for django-cid</h1>
+
+
+<h2>Template context processors</h2>
+<p>
+  The correlation id should be automatically added in this rendered
+  template, hereafter between the brackets:
+</p>
+<blockquote>[{{correlation_id }}]</blockquote>
+
+<h2>SQL queries</h2>
+<p>
+  The view has made an SQL query on the <tt>testapp_item</tt> table
+  that should contain the correlation id as a comment. Check your
+  database logs. The query looks like the following (but with a
+  comment):
+</p>
+<blockquote>{{ sql_query }}</blockquote>
+
+
+<h2>Logs</h2>
+<p>
+  The view has logged a warning. It should contain a correlation
+  id. Check the console.
+</p>

@@ -33,7 +33,9 @@ def pytest_configure():
             'django.contrib.messages',
             'django.contrib.staticfiles',
             'django.contrib.admin',
-            'cid',
+
+            'cid.apps.CidAppConfig',
+            'testapp',
         ],
 
         STATICFILES_DIRS=(location('static/'),),

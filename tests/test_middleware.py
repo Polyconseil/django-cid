@@ -96,16 +96,15 @@ class TestCidMiddleware(TestCase):
 class TestIntegration(TestCase):
 
     def _test_integration(self):
-        # First call generates an new Correlation ID
-        response = self.client.get(reverse('ping'))  # comes from the sandbox
+        url = reverse('testit')  # comes from sandbox/testapp
+
+        # A request without any correlation id
+        response = self.client.get(url)
         cid = response.get('X_CORRELATION_ID')
         self.assertIsNotNone(cid)
 
-        # Later calls with the header will keep it
-        response = self.client.get(
-            reverse('ping'),  # comes from the sandbox
-            **{'X_CORRELATION_ID': cid}
-        )
+        # A request *with* a correlation id
+        response = self.client.get(url, **{'X_CORRELATION_ID': cid})
         self.assertEqual(response['X_CORRELATION_ID'], cid)
 
     @override_settings(
