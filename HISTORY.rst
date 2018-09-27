@@ -25,7 +25,7 @@ History
 compatible. Be sure to read the details below to know if and how you
 can migrate.
 
-* |backward-incompatible| Drop support of Django < 1.11.
+* |backward-incompatible| Drop support of Django 1.10 and earlier.
 
 * |backward-incompatible| Drop support of Python 2.
 
@@ -45,8 +45,8 @@ can migrate.
 * |backward-incompatible| Change the app name to be used in
   INSTALLED_APPS.
 
-  Migration from version 0.x: if you had `cid` in `INSTALLED_APPS`,
-  replace it by `cid.apps.CidAppConfig`. If you did not, add the
+  **Migration from version 0.x:** if you had ``cid`` in ``INSTALLED_APPS``,
+  replace it by ``cid.apps.CidAppConfig``. If you did not, add the
   latter.
 
 * |backward-incompatible| Drop compatibility with
