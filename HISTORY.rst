@@ -3,21 +3,6 @@
 History
 -------
 
-0.1.0 (2014-08-05)
-++++++++++++++++++
-
-* First release on PyPI.
-
-0.1.2 (2016-12-01)
-++++++++++++++++++
-
-* Made CID repsonse header configurable, and optional (thanks @dbaty)
-
-0.2.0 (2016-12-06)
-++++++++++++++++++
-
-* Added support for Django 1.10 middleware (thanks @qbey)
-
 1.0 (unreleased)
 ++++++++++++++++
 
@@ -56,6 +41,22 @@ can migrate.
   If you really must use the old ``MIDDLEWARE_CLASSES`` setting,
   include ``CidOldStyleMiddleware`` instead of ``CidMiddleware``.
 
+
+0.2.0 (2016-12-06)
+++++++++++++++++++
+
+* Added support for Django 1.10 middleware (thanks @qbey)
+
+
+0.1.2 (2016-12-01)
+++++++++++++++++++
+
+* Made CID repsonse header configurable, and optional (thanks @dbaty)
+
+0.1.0 (2014-08-05)
+++++++++++++++++++
+
+* First release on PyPI.
 
 
 .. role:: raw-html(raw)
