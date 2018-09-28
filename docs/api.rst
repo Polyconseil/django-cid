@@ -1,9 +1,5 @@
-cid package
-===========
-
-
-cid.locals module
------------------
+API
+===
 
 .. automodule:: cid.locals
     :members:

@@ -1,6 +1,7 @@
 -e .
 
 sphinx
+sphinx_rtd_theme
 
 django
 
