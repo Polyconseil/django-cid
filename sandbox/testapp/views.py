@@ -1,6 +1,7 @@
 import logging
 
 from django.db import connection
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from testapp.models import Item
@@ -16,3 +17,8 @@ def testit(request):
         'sql_query': connection.queries[0]['sql'],
     }
     return render(request, 'testapp/testit.html', context)
+
+
+def ok(request):
+    """A simple view for integration tests."""
+    return HttpResponse('ok')

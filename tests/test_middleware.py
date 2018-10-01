@@ -96,7 +96,7 @@ class TestCidMiddleware(TestCase):
 class TestIntegration(TestCase):
 
     def _test_integration(self):
-        url = reverse('testit')  # comes from sandbox/testapp
+        url = reverse('ok')  # comes from sandbox/testapp
 
         # A request without any correlation id
         response = self.client.get(url)
