@@ -18,10 +18,12 @@
 
 import datetime
 import os
+import sys
 
 import cid
 
 
+sys.path.insert(0, '.')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'sandbox.settings'
 
 
