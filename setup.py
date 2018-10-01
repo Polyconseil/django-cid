@@ -6,7 +6,7 @@ history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
     name='django-cid',
-    version='1.0',
+    version='1.1.dev0',
     description="""Correlation IDs in Django for debugging requests""",
     long_description=readme + '\n\n' + history,
     author='Snowball One',
