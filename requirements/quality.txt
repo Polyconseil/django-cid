@@ -1,4 +1,4 @@
-# `docutils` is needed to check for `setup.py check --restructuredtext`
-docutils
+# `readme_renderer` is needed to check for `setup.py check --restructuredtext`
 isort
 pylint
+readme_renderer
