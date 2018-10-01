@@ -81,6 +81,22 @@ setting:
     in front of Django, the latter, sanitized value should be used in
     the settings.
 
+If a correlation id is provided upstream (e.g. "1234"), it is possible
+to concatenate it with a newly generated one. The cid will then look
+like ``1234, 1aa38e4e-89c6-4655-9b8e-38ca349da017``. To do so, use the
+following settings:
+
+.. code-block:: python
+
+    CID_GENERATE = True
+    CID_CONCATENATE_IDS = True
+
+This is useful when you use a service-oriented architecture and want
+to be able to follow a request amongst all systems (by looking at logs
+that have the first correlation id that was set upstream), and also on
+a particular system (by looking at logs that have the id added by the
+system itself).
+
 
 Inclusion of the correlation id in the response
 -----------------------------------------------

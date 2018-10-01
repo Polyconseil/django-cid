@@ -23,6 +23,11 @@ class CidMiddleware:
         cid = request.META.get(self.cid_request_header, None)
         if cid is None:
             cid = get_cid()
+        elif (
+                getattr(settings, 'CID_CONCATENATE_IDS', False)
+                and getattr(settings, 'CID_GENERATE', False)
+        ):
+            cid = '%s, %s' % (cid, get_cid())
         request.correlation_id = cid
         set_cid(cid)
         return request

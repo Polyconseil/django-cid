@@ -34,8 +34,8 @@ def make_request(cid=None, header_name='X_CORRELATION_ID'):
 
 class TestCidMiddleware(TestCase):
 
-    def tearDown(self):
-        super().tearDown()
+    def setUp(self):
+        super().setUp()
         cid.locals.set_cid(None)  # don't leak cid between each test
 
     def test_with_cid_from_upstream(self):
@@ -64,6 +64,17 @@ class TestCidMiddleware(TestCase):
         self.assertEqual(request.correlation_id, 'generated-cid')
         self.assertEqual(cid.locals.get_cid(), 'generated-cid')
         self.assertEqual(response['X_CORRELATION_ID'], 'generated-cid')
+
+    @override_settings(CID_GENERATE=True, CID_CONCATENATE_IDS=True)
+    @mock.patch('uuid.uuid4')
+    def test_concatenate_ids(self, uuid4):
+        uuid4.return_value = 'local-cid'
+        request = make_request(cid='upstream-cid')
+        middleware = CidMiddleware(get_response=get_response)
+        response = middleware(request)
+        self.assertEqual(request.correlation_id, 'upstream-cid, local-cid')
+        self.assertEqual(cid.locals.get_cid(), 'upstream-cid, local-cid')
+        self.assertEqual(response['X_CORRELATION_ID'], 'upstream-cid, local-cid')
 
     @override_settings(CID_HEADER='X_CUSTOM_HEADER')
     def test_custom_request_header(self):
