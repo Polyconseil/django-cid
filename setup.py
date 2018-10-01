@@ -21,7 +21,7 @@ setup(
     ],
     license="BSD",
     zip_safe=False,
-    keywords='cid',
+    keywords='django logging correlation id debugging',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Framework :: Django',
