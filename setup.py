@@ -10,7 +10,7 @@ setup(
     description="""Correlation IDs in Django for debugging requests""",
     long_description=readme + '\n\n' + history,
     author='Snowball One',
-    author_email='please-direct-your-queries-to-the-maintainer',
+    author_email='opensource+django-cid@polyconseil.fr',
     maintainer="Polyconseil",
     maintainer_email="opensource+django-cid@polyconseil.fr",
     url='https://github.com/Polyconseil/django-cid',
