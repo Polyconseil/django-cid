@@ -76,6 +76,9 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
+# By default, don't suppose that preformatted text is Python code. We
+# use the `code-block` directive for Python code.
+highlight_language = 'none'
 
 
 # -- Options for HTML output -------------------------------------------------
