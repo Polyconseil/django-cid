@@ -1,7 +1,7 @@
 History
 -------
 
-1.1 (unreleased)
+1.1 (2018-10-01)
 ++++++++++++++++
 
 - Allow to concatenate an upstream correlation id with a

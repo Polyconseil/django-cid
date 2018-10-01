@@ -18,7 +18,7 @@ changelog = clean_history(open('HISTORY.rst').read())
 
 setup(
     name='django-cid',
-    version='1.1.dev0',
+    version='1.1',
     description="""Correlation IDs in Django for debugging requests""",
     long_description=readme + '\n\n' + changelog,
     author='Snowball One',
