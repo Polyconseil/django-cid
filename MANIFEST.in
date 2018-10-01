@@ -4,3 +4,16 @@ include HISTORY.rst
 include LICENSE
 include README.rst
 recursive-include cid *.html *.png *.gif *js *.css *jpg *jpeg *svg *py
+
+graft docs
+prune requirements
+prune sandbox
+prune tests
+
+exclude .coveragerc
+exclude .isort.cfg
+exclude .pylintrc
+exclude Makefile
+exclude conftest.py
+exclude pytest.ini
+exclude tox.ini
