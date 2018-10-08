@@ -4,7 +4,9 @@ History
 1.2 (unreleased)
 ++++++++++++++++
 
-- Nothing changed yet.
+- **bugfix:** Fix bug (introduced in version 1.0) that caused the
+  correlation id to be reused across all requests that were processed
+  by the same thread.
 
 
 1.1 (2018-10-01)

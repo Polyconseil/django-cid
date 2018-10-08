@@ -17,9 +17,24 @@ def get_cid():
 
     If no correlation id has been set and ``CID_GENERATE`` is enabled
     in the settings, a new correlation id is set and returned.
+
+    FIXME (dbaty): in version 2, just `return getattr(_thread_locals, 'CID', None)`
+    We want the simplest thing here and let `generate_new_cid` do the job.
     """
     cid = getattr(_thread_locals, 'CID', None)
     if cid is None and getattr(settings, 'CID_GENERATE', False):
         cid = str(uuid.uuid4())
         set_cid(cid)
     return cid
+
+
+def generate_new_cid(upstream_cid=None):
+    """Generate a new correlation id, possibly based on the given one."""
+    if upstream_cid is None:
+        return str(uuid.uuid4()) if getattr(settings, 'CID_GENERATE', False) else None
+    if (
+            getattr(settings, 'CID_CONCATENATE_IDS', False)
+            and getattr(settings, 'CID_GENERATE', False)
+    ):
+        return '%s, %s' % (upstream_cid, str(uuid.uuid4()))
+    return upstream_cid

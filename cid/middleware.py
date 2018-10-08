@@ -1,5 +1,6 @@
 from django.conf import settings
 
+from cid.locals import generate_new_cid
 from cid.locals import get_cid
 from cid.locals import set_cid
 
@@ -20,14 +21,8 @@ class CidMiddleware:
         )
 
     def _process_request(self, request):
-        cid = request.META.get(self.cid_request_header, None)
-        if cid is None:
-            cid = get_cid()
-        elif (
-                getattr(settings, 'CID_CONCATENATE_IDS', False)
-                and getattr(settings, 'CID_GENERATE', False)
-        ):
-            cid = '%s, %s' % (cid, get_cid())
+        upstream_cid = request.META.get(self.cid_request_header, None)
+        cid = generate_new_cid(upstream_cid)
         request.correlation_id = cid
         set_cid(cid)
         return request
