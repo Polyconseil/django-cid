@@ -1,7 +1,7 @@
 History
 -------
 
-1.2 (unreleased)
+1.2 (2018-10-08)
 ++++++++++++++++
 
 - **bugfix:** Fix bug (introduced in version 1.0) that caused the
