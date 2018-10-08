@@ -12,6 +12,15 @@ def set_cid(cid):
     setattr(_thread_locals, 'CID', cid)
 
 
+def _clear_cid():
+    """Clear the correlation id from our storage.
+
+    This is an internal function that is likely to be removed in a
+    future version.
+    """
+    set_cid(None)
+
+
 def get_cid():
     """Return the currently set correlation id (if any).
 

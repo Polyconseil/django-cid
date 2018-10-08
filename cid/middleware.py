@@ -1,5 +1,6 @@
 from django.conf import settings
 
+from cid.locals import _clear_cid
 from cid.locals import get_cid
 from cid.locals import set_cid
 
@@ -20,6 +21,7 @@ class CidMiddleware:
         )
 
     def _process_request(self, request):
+        _clear_cid()
         cid = request.META.get(self.cid_request_header, None)
         if cid is None:
             cid = get_cid()
@@ -49,7 +51,6 @@ class CidOldStyleMiddleware(CidMiddleware):
     """Support for the old ``MIDDLEWARE_CLASSES`` setting."""
 
     def __init__(self):
-        print('middleware init')
         # `get_response` is only used in `CidMiddleware.__call__`,
         # which is not called when using `MIDDLEWARE_CLASSES`.
         super().__init__(get_response='dummy')

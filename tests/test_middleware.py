@@ -57,13 +57,21 @@ class TestCidMiddleware(TestCase):
     @override_settings(CID_GENERATE=True)
     @mock.patch('uuid.uuid4')
     def test_generate_cid(self, uuid4):
-        uuid4.return_value = 'generated-cid'
+        uuid4.return_value = 'first-cid'
         request = make_request(cid=None)
         middleware = CidMiddleware(get_response=get_response)
         response = middleware(request)
-        self.assertEqual(request.correlation_id, 'generated-cid')
-        self.assertEqual(cid.locals.get_cid(), 'generated-cid')
-        self.assertEqual(response['X_CORRELATION_ID'], 'generated-cid')
+        self.assertEqual(request.correlation_id, 'first-cid')
+        self.assertEqual(cid.locals.get_cid(), 'first-cid')
+        self.assertEqual(response['X_CORRELATION_ID'], 'first-cid')
+
+        uuid4.return_value = 'second-cid'
+        request = make_request(cid=None)
+        middleware = CidMiddleware(get_response=get_response)
+        response = middleware(request)
+        self.assertEqual(request.correlation_id, 'second-cid')
+        self.assertEqual(cid.locals.get_cid(), 'second-cid')
+        self.assertEqual(response['X_CORRELATION_ID'], 'second-cid')
 
     @override_settings(CID_GENERATE=True, CID_CONCATENATE_IDS=True)
     @mock.patch('uuid.uuid4')
