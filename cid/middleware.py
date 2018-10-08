@@ -1,6 +1,6 @@
 from django.conf import settings
 
-from cid.locals import clear_cid
+from cid.locals import _clear_cid
 from cid.locals import get_cid
 from cid.locals import set_cid
 
@@ -21,7 +21,7 @@ class CidMiddleware:
         )
 
     def _process_request(self, request):
-        clear_cid()
+        _clear_cid()
         cid = request.META.get(self.cid_request_header, None)
         if cid is None:
             cid = get_cid()

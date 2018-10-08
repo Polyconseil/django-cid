@@ -12,11 +12,11 @@ def set_cid(cid):
     setattr(_thread_locals, 'CID', cid)
 
 
-def clear_cid():
+def _clear_cid():
     """Clear the correlation id from our storage.
 
-    If you use the middleware, you probably should never have to call
-    this function. It is to be used only.
+    This is an internal function that is likely to be removed in a
+    future version.
     """
     set_cid(None)
 
