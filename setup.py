@@ -26,7 +26,7 @@ setup(
     maintainer="Polyconseil",
     maintainer_email="opensource+django-cid@polyconseil.fr",
     url='https://github.com/Polyconseil/django-cid',
-    packages=find_packages(),
+    packages=find_packages(exclude=('sandbox*', 'tests*')),
     include_package_data=True,
     install_requires=[
         'django>=1.11',

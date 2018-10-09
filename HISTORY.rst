@@ -4,7 +4,8 @@ History
 1.3 (unreleased)
 ++++++++++++++++
 
-- Nothing changed yet.
+- **bugfix**: Fix packaging bug (introduced in version 1.2) that
+  caused two extra packages ``tests`` and ``sandbox`` to be installed.
 
 
 1.2 (2018-10-08)
