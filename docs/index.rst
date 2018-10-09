@@ -13,5 +13,6 @@ Topics
    installation
    api
    contributing
+   releasing
    authors
    history

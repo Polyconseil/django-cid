@@ -14,5 +14,8 @@ quality:
 	python setup.py check --strict --metadata --restructuredtext
 	pylint --reports=no setup.py cid
 
+release: clean
+	fullrelease
+
 test:
 	py.test tests
