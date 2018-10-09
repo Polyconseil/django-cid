@@ -1,7 +1,7 @@
 History
 -------
 
-1.3 (unreleased)
+1.3 (2018-10-09)
 ++++++++++++++++
 
 - **bugfix**: Fix packaging bug (introduced in version 1.2) that
