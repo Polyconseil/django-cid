@@ -44,7 +44,6 @@ class CidOldStyleMiddleware(CidMiddleware):
     """Support for the old ``MIDDLEWARE_CLASSES`` setting."""
 
     def __init__(self):
-        print('middleware init')
         # `get_response` is only used in `CidMiddleware.__call__`,
         # which is not called when using `MIDDLEWARE_CLASSES`.
         super().__init__(get_response='dummy')
