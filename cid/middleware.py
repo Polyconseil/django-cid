@@ -37,22 +37,3 @@ class CidMiddleware:
         request = self._process_request(request)
         response = self.get_response(request)
         return self._process_response(response)
-
-
-# FIXME: to be removed once we remove support of Django 1.11
-class CidOldStyleMiddleware(CidMiddleware):
-    """Support for the old ``MIDDLEWARE_CLASSES`` setting."""
-
-    def __init__(self):
-        # `get_response` is only used in `CidMiddleware.__call__`,
-        # which is not called when using `MIDDLEWARE_CLASSES`.
-        super().__init__(get_response='dummy')
-
-    def process_request(self, request):
-        self._process_request(request)
-        # We must return None otherwise Django thinks it's the
-        # response.
-        return None
-
-    def process_response(self, request, response):
-        return self._process_response(response)
