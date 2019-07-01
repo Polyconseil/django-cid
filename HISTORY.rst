@@ -4,7 +4,7 @@ History
 1.4 (unreleased)
 ++++++++++++++++
 
-- Nothing changed yet.
+* |backward-incompatible| Drop support of Python 3.4.
 
 
 1.3 (2018-10-09)
