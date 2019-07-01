@@ -51,18 +51,6 @@ to work, you must enable a middleware in the settings, like this:
         # other middlewares
     )
 
-.. note::
-
-    If you really must use the old ``MIDDLEWARE_CLASSES`` setting,
-    include the old-style class instead:
-
-    .. code-block:: python
-
-        MIDDLEWARE_CLASSES = (
-            'cid.middleware.CidOldStyleMiddleware',
-            # other middlewares
-        )
-
 The middleware takes care of getting the correlation from the HTTP
 request header. By default it looks for a header named
 ``X_CORRELATION_ID``, but you can change this with the ``CID_HEADER``

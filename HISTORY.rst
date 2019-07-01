@@ -5,6 +5,7 @@ History
 ++++++++++++++++
 
 * |backward-incompatible| Drop support of Python 3.4.
+* |backward-incompatible| Drop support of Django 1.11 and Django 2.0.
 
 
 1.3 (2018-10-09)
