@@ -1,6 +1,6 @@
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from threading import local
-from cid.locals import get_cid, set_cid
+from cid.locals import get_cid, set_cid, generate_new_cid
 
 
 _thread_locals = local()
@@ -28,3 +28,7 @@ class TestCidStorage(TestCase):
         self.assertIsNone(get_cid())
         set_cid(self.cid)
         self.assertEqual(self.cid, get_cid())
+
+    @override_settings(CID_GENERATE=True, CID_GENERATOR=lambda: 'constant_correlation')
+    def test_custom_generator(self):
+        assert generate_new_cid() == 'constant_correlation'

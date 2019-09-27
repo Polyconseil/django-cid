@@ -6,6 +6,8 @@ History
 
 * |backward-incompatible| Drop support of Python 3.4.
 * |backward-incompatible| Drop support of Django 1.11 and Django 2.0.
+* Add ``CID_GENERATOR`` setting to allow the customization of the
+  correlation id.
 
 
 1.3 (2018-10-09)

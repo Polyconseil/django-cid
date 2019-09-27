@@ -37,9 +37,18 @@ the settings:
 
     CID_GENERATE = True
 
-This approach is perfectly acceptable but does suffer one drawback. If
-you host your Django application behind another web server such as
-nginx, then nginx logs won't contain the correlation id.
+By default, ``django-cid`` uses ``str(uuid.uuid4())`` to generate the
+correlation id but you can customize this generation to suit your
+needs in the settings:
+
+.. code-block:: python
+
+    CID_GENERATOR = lambda: f'{time.time()}-{random.random()}'
+
+Letting ``django-cid`` generate a new correlation id is perfectly
+acceptable but does suffer one drawback. If you host your Django
+application behind another web server such as nginx, then nginx logs
+won't contain the correlation id.
 ``django-cid`` can handle this by extracting a correlation id created
 in nginx and passed through as a header in the HTTP request. For this
 to work, you must enable a middleware in the settings, like this:
