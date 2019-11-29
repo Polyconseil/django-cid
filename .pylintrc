@@ -7,7 +7,7 @@ extension-pkg-whitelist=lxml,posix_ipc,spidev,netifaces
 
 # Add files or directories to the blacklist. They should be base names, not
 # paths.
-ignore=migrations,south_migrations
+ignore=migrations
 
 # Add files or directories matching the regex patterns to the blacklist. The
 # regex matches against base names, not paths.
@@ -33,6 +33,7 @@ disable=
     duplicate-code,
     fixme,
     file-ignored,
+    import-outside-toplevel,
     invalid-name,
     locally-enabled,
     locally-disabled,
@@ -53,6 +54,7 @@ disable=
     too-many-locals,
     too-many-public-methods,
     too-many-statements,
+    ungrouped-imports,
     unused-argument,
     useless-return,
     wrong-import-order  # we have a custom isort config which pylint can't grok
@@ -69,22 +71,3 @@ msg-template="{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}"
 
 # Maximum number of characters on a single line.
 max-line-length=120
-
-
-[VARIABLES]
-
-# A regular expression matching the beginning of the name of dummy variables
-# (i.e. not used).
-# Don't use pylint 1.6.1 default regexp, it doesn't accept underscores in the middle
-dummy-variables-rgx=_|dummy
-
-[DESIGN]
-
-# Maximum number of arguments for function / method
-max-args=8
-
-# Maximum number of parents for a class (see R0901).
-max-parents=10
-
-# Maximum number of attributes for a class (see R0902).
-max-attributes=10
