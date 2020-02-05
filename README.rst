@@ -49,7 +49,7 @@ Supported versions
 
 We currently support the following versions:
 
-- Django 2.1 with Python >= 3.5.
 - Django 2.2 with Python >= 3.5.
+- Django 3.0 with Python >= 3.6.
 
 Other versions may work but are not supported.
