@@ -8,18 +8,20 @@ matrix:
   fast_finish: true
   include:
     # https://docs.djangoproject.com/en/dev/faq/install/#what-python-version-can-i-use-with-django
-    - {env: DJANGO=2.1, python: '3.5'}
-    - {env: DJANGO=2.1, python: '3.6'}
-    - {env: DJANGO=2.1, python: '3.7'}
-    - {env: DJANGO=2.1, python: 'nightly'}
-
     - {env: DJANGO=2.2, python: '3.5'}
     - {env: DJANGO=2.2, python: '3.6'}
     - {env: DJANGO=2.2, python: '3.7'}
+    - {env: DJANGO=2.2, python: '3.8'}
     - {env: DJANGO=2.2, python: 'nightly'}
+
+    - {env: DJANGO=3.0, python: '3.6'}
+    - {env: DJANGO=3.0, python: '3.7'}
+    - {env: DJANGO=3.0, python: '3.8'}
+    - {env: DJANGO=3.0, python: 'nightly'}
 
     - {env: DJANGO=master, python: '3.6'}
     - {env: DJANGO=master, python: '3.7'}
+    - {env: DJANGO=master, python: '3.8'}
     - {env: DJANGO=master, python: 'nightly'}
 
     - {python: '3.7', env: TOXENV=docs}

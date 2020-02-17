@@ -4,7 +4,8 @@ History
 2.1 (unreleased)
 ++++++++++++++++
 
-- Nothing changed yet.
+* Add support of Django 3.0
+* |backward-incompatible| Drop support of Django 2.1.
 
 
 2.0 (2019-09-27)
