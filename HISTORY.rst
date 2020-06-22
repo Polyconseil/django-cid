@@ -1,7 +1,7 @@
 History
 -------
 
-2.1 (unreleased)
+2.1 (2020-06-22)
 ++++++++++++++++
 
 * Add support of Django 3.0
