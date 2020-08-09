@@ -1,4 +1,4 @@
 # `readme_renderer` is needed to check for `setup.py check --restructuredtext`
-isort
+isort~=4.3
 pylint
 readme_renderer

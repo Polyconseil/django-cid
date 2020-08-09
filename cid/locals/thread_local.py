@@ -1,7 +1,8 @@
 from threading import local
-import uuid
 
 from django.conf import settings
+
+from .base import build_cid
 
 
 _thread_locals = local()
@@ -23,23 +24,6 @@ def get_cid():
     """
     cid = getattr(_thread_locals, 'CID', None)
     if cid is None and getattr(settings, 'CID_GENERATE', False):
-        cid = _build_cid()
+        cid = build_cid()
         set_cid(cid)
     return cid
-
-
-def generate_new_cid(upstream_cid=None):
-    """Generate a new correlation id, possibly based on the given one."""
-    if upstream_cid is None:
-        return _build_cid() if getattr(settings, 'CID_GENERATE', False) else None
-    if (
-            getattr(settings, 'CID_CONCATENATE_IDS', False)
-            and getattr(settings, 'CID_GENERATE', False)
-    ):
-        return '%s, %s' % (upstream_cid, _build_cid())
-    return upstream_cid
-
-
-def _build_cid():
-    """Build a new cid"""
-    return str(getattr(settings, 'CID_GENERATOR', uuid.uuid4)())
