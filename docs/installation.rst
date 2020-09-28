@@ -159,6 +159,7 @@ provided by Django's ``startproject``. Changed lines are highlighted.
                 'level': 'INFO',
                 'class': 'logging.StreamHandler',
                 'formatter': 'verbose',
+                'filters': ['correlation'],
             },
         },
         'filters': {
@@ -177,6 +178,22 @@ provided by Django's ``startproject``. Changed lines are highlighted.
 
 You can then use your loggers as you normally do, safe in the
 knowledge that you can tie them all back to the correlation id.
+
+If you want to include the correlation id in all logs, you need to
+tweak the "root" key like this:
+
+.. code-block:: python
+
+    LOGGING = {
+        # ...
+        'root': {
+            'level': 'INFO',
+            'handlers': ['console'],
+            'filters': ['correlation'],
+        },
+        # ...
+    }
+
 
 
 Inclusion of the correlation id in SQL queries

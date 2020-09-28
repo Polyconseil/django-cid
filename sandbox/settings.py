@@ -143,6 +143,7 @@ LOGGING = {
             'level': 'INFO',
             'class': 'logging.StreamHandler',
             'formatter': 'verbose',
+            'filters': ['correlation'],
         },
     },
     'filters': {
@@ -153,8 +154,15 @@ LOGGING = {
     'loggers': {
         'testapp': {
             'handlers': ['console'],
-            'filters': ['correlation'],
             'propagate': True,
         },
     },
+    # If you want to include the correlation id on all logs, uncomment
+    # the following block:
+    #
+    # 'root': {
+    #     'level': 'INFO',
+    #     'handlers': ['console'],
+    #     'filters': ['correlation'],
+    # }
 }
