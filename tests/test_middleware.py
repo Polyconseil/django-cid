@@ -1,4 +1,3 @@
-import unittest
 from unittest import mock
 
 from django.test import TestCase
@@ -23,11 +22,11 @@ def get_response(request):
     return DummyResponse(request)
 
 
-def make_request(cid=None, header_name='X_CORRELATION_ID'):
+def make_request(cid_=None, header_name='X_CORRELATION_ID'):
     request = mock.Mock()
     request.META = {}
-    if cid:
-        request.META[header_name] = cid
+    if cid_:
+        request.META[header_name] = cid_
     return request
 
 
@@ -46,7 +45,7 @@ class TestCidMiddleware(TestCase):
         self.assertEqual(response['X_CORRELATION_ID'], 'cid-from-upstream')
 
     def test_no_cid_from_upstream(self):
-        request = make_request(cid=None)
+        request = make_request(cid_=None)
         middleware = CidMiddleware(get_response=get_response)
         response = middleware(request)
         self.assertIsNone(request.correlation_id, None)
@@ -57,7 +56,7 @@ class TestCidMiddleware(TestCase):
     @mock.patch('uuid.uuid4')
     def test_generate_cid(self, uuid4):
         uuid4.return_value = 'generated-cid'
-        request = make_request(cid=None)
+        request = make_request(cid_=None)
         middleware = CidMiddleware(get_response=get_response)
         response = middleware(request)
         self.assertEqual(request.correlation_id, 'generated-cid')
@@ -68,7 +67,7 @@ class TestCidMiddleware(TestCase):
     @mock.patch('uuid.uuid4')
     def test_concatenate_ids(self, uuid4):
         uuid4.return_value = 'local-cid'
-        request = make_request(cid='upstream-cid')
+        request = make_request(cid_='upstream-cid')
         middleware = CidMiddleware(get_response=get_response)
         response = middleware(request)
         self.assertEqual(request.correlation_id, 'upstream-cid, local-cid')
@@ -114,9 +113,9 @@ class TestIntegration(TestCase):
 
         # A request without any correlation id
         response = self.client.get(url)
-        cid = response.get('X_CORRELATION_ID')
-        self.assertIsNotNone(cid)
+        cid_ = response.get('X_CORRELATION_ID')
+        self.assertIsNotNone(cid_)
 
         # A request *with* a correlation id
-        response = self.client.get(url, **{'X_CORRELATION_ID': cid})
-        self.assertEqual(response['X_CORRELATION_ID'], cid)
+        response = self.client.get(url, X_CORRELATION_ID=cid_)
+        self.assertEqual(response['X_CORRELATION_ID'], cid_)

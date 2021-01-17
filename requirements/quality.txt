@@ -1,4 +1,6 @@
-# `readme_renderer` is needed to check for `setup.py check --restructuredtext`
+check-manifest
+check-oldies
 isort
 pylint
-readme_renderer
+pylint_strict_informational
+twine

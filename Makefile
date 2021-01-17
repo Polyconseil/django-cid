@@ -11,8 +11,12 @@ docs:
 	sphinx-build -W -n -b html docs ./build/sphinx/html
 
 quality:
-	python setup.py check --strict --metadata --restructuredtext
-	pylint --reports=no setup.py cid
+	check-manifest
+	isort --check-only --diff cid
+	pylint --reports=no setup.py cid tests
+	check-branches
+	check-fixmes
+	python setup.py sdist >/dev/null 2>&1 && twine check dist/*
 
 release: clean
 	fullrelease
