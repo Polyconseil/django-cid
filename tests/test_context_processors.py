@@ -10,7 +10,7 @@ class TestContextProcessor(TestCase):
     @mock.patch('cid.context_processors.get_cid')
     def test_cid_added(self, get_cid):
         get_cid.return_value = 'a-text-cid'
-        self.assertEquals(
+        self.assertEqual(
             {'correlation_id': 'a-text-cid'},
             cid_context_processor(mock.Mock())
         )
@@ -18,4 +18,4 @@ class TestContextProcessor(TestCase):
     @mock.patch('cid.context_processors.get_cid')
     def test_cid_not_added_if_not_present(self, get_cid):
         get_cid.return_value = None
-        self.assertEquals({}, cid_context_processor(mock.Mock()))
+        self.assertEqual({}, cid_context_processor(mock.Mock()))

@@ -4,7 +4,8 @@ History
 2.2 (unreleased)
 ++++++++++++++++
 
-- Nothing changed yet.
+- Under Python 3.7 and later, use context variables (with the contextvars module)
+  instead of a thread-local variable to avoid state bleeding in concurrent code.
 
 
 2.1 (2020-06-22)
