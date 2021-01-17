@@ -1,6 +1,7 @@
 import os
 import sys
 
+import django
 from django import conf
 from django.core.files import temp as tempfile
 
@@ -14,7 +15,7 @@ def location(x):
 
 
 def pytest_configure():
-    BASE_SETTINGS = dict(
+    conf.settings.configure(
         DATABASES={
             'default': {
                 'ENGINE': 'django.db.backends.sqlite3',
@@ -91,4 +92,4 @@ def pytest_configure():
             }
         }
     )
-    conf.settings.configure(**BASE_SETTINGS)
+    django.setup()
