@@ -4,6 +4,10 @@ History
 2.2 (unreleased)
 ++++++++++++++++
 
+- Add support of Django 3.1.
+
+- Remove support of Python 3.5.
+
 - Under Python 3.7 and later, use context variables (with the contextvars module)
   instead of a thread-local variable to avoid state bleeding in concurrent code.
 

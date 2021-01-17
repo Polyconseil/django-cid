@@ -29,7 +29,7 @@ setup(
     packages=find_packages(exclude=('sandbox*', 'tests*')),
     include_package_data=True,
     install_requires=[
-        'django>=1.11',
+        'django>=2.2',
     ],
     license="BSD",
     zip_safe=False,
@@ -41,9 +41,9 @@ setup(
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
     ],
 )
