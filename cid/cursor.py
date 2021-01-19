@@ -34,9 +34,6 @@ class CidCursorWrapper:
         cid = get_cid()
         if not cid:
             return sql
-        # FIXME (dbaty): we could use "--" prefixed comments so that
-        # we would not have to bother with escaping the cid (assuming
-        # it does not contain newline characters).
         cid = cid.replace('/*', r'\/\*').replace('*/', r'\*\/')
         return "/* {} */\n{}".format(cid_sql_template.format(cid=cid), sql)
 
