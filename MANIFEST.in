@@ -16,4 +16,3 @@ exclude Makefile
 exclude conftest.py
 exclude pytest.ini
 exclude pyproject.toml
-exclude tox.ini
