@@ -1,3 +1,9 @@
+[tool.pylint.MASTER]
+load-plugins = [
+    "pylint_strict_informational",
+]
+
+
 [tool.pylint.REPORTS]
 msg-template = "{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}"
 
@@ -5,6 +11,11 @@ msg-template = "{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}"
 max-line-length = "120"
 
 [tool.pylint."MESSAGES CONTROL"]
+enable = [
+    "use-symbolic-message-instead",
+    "useless-suppression",
+]
+
 disable = [
     "arguments-differ",
     "attribute-defined-outside-init",
