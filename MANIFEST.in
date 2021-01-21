@@ -12,8 +12,8 @@ prune tests
 
 exclude .coveragerc
 exclude .isort.cfg
-exclude .pylintrc
 exclude Makefile
 exclude conftest.py
 exclude pytest.ini
+exclude pyproject.toml
 exclude tox.ini
