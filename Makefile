@@ -12,7 +12,7 @@ docs:
 
 quality:
 	check-manifest
-	isort --check-only --diff cid
+	isort --check-only --diff cid tests
 	pylint --reports=no setup.py cid tests
 	check-branches
 	check-fixmes

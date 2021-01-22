@@ -1,5 +1,6 @@
-from django.contrib.gis.db.backends.postgis.base import \
-    DatabaseWrapper as BaseDatabaseWrapper
+from django.contrib.gis.db.backends.postgis.base import (
+    DatabaseWrapper as BaseDatabaseWrapper,
+)
 
 from ...cursor import CidCursorWrapper
 

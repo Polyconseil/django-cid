@@ -1,6 +1,11 @@
-from django.test import TestCase, override_settings
 from threading import local
-from cid.locals import get_cid, set_cid, generate_new_cid
+
+from django.test import TestCase
+from django.test import override_settings
+
+from cid.locals import generate_new_cid
+from cid.locals import get_cid
+from cid.locals import set_cid
 
 
 _thread_locals = local()
