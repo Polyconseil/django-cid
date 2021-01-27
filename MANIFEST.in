@@ -12,5 +12,4 @@ prune tests
 
 exclude Makefile
 exclude conftest.py
-exclude pytest.ini
 exclude pyproject.toml
