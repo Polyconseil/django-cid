@@ -1,5 +1,0 @@
-[run]
-source = cid
-omit =
-    */migrations/*
-    docs/*

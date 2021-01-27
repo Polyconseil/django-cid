@@ -10,7 +10,6 @@ prune requirements
 prune sandbox
 prune tests
 
-exclude .coveragerc
 exclude Makefile
 exclude conftest.py
 exclude pytest.ini
