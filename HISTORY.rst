@@ -1,7 +1,7 @@
 History
 -------
 
-2.2 (unreleased)
+2.2 (2021-03-15)
 ++++++++++++++++
 
 - Add support of Django 3.1.
