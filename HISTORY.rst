@@ -9,6 +9,9 @@ History
 2.4 (unreleased)
 ++++++++++++++++
 
+- |backward-incompatible| Drop support of Python 3.6 and prior
+  versions. Only Python 3.7 and later are supported.
+
 - Add support of Django 3.2 and 4.0.
 
 - |backward-incompatible| Drop support of Django 3.0 and prior
