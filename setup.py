@@ -1,26 +1,13 @@
 from setuptools import setup, find_packages
 
 
-def clean_history(history):
-    # PyPI does not allow the `raw` directive. We'll laboriously
-    # replace it. Hang tight, it's going to be ugly.
-    history = history.replace('|backward-incompatible|', '**backward incompatible:** ')
-    lines = []
-    for line in history.split('\n'):
-        if line.startswith('.. role:: raw-html'):
-            break
-        lines.append(line)
-    return '\n'.join(lines)
-
-
 readme = open('README.rst').read()
-changelog = clean_history(open('HISTORY.rst').read())
 
 setup(
     name='django-cid',
     version='2.3.dev0',
     description="""Correlation IDs in Django for debugging requests""",
-    long_description=readme + '\n\n' + changelog,
+    long_description=readme,
     author='Snowball One',
     author_email='opensource+django-cid@polyconseil.fr',
     maintainer="Polyconseil",
