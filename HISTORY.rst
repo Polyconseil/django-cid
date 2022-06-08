@@ -1,10 +1,16 @@
 History
 -------
 
+.. role:: strike
+    :class: strike
+
+
+
 2.3 (unreleased)
 ++++++++++++++++
 
-- Nothing changed yet.
+- Under Python 3.7 and later, use context variables (with the contextvars module)
+  instead of a thread-local variable to avoid state bleeding in concurrent code.
 
 
 2.2 (2021-03-15)
@@ -14,8 +20,7 @@ History
 
 - Remove support of Python 3.5.
 
-- Under Python 3.7 and later, use context variables (with the contextvars module)
-  instead of a thread-local variable to avoid state bleeding in concurrent code.
+- :strike:`Under Python 3.7 and later, use context variables (with the contextvars module) instead of a thread-local variable to avoid state bleeding in concurrent code.` Version 2.2 had a bug that caused context variables to never be used. Thread-local variables were always used.
 
 
 2.1 (2020-06-22)
