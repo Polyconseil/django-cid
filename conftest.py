@@ -24,6 +24,7 @@ def pytest_configure():
         },
         DEBUG=False,
         SITE_ID=1,
+        SECRET_KEY="the-secret-key",
         EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend',
         ROOT_URLCONF='sandbox.urls',
 
