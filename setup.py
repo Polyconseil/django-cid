@@ -1,7 +1,8 @@
 from setuptools import setup, find_packages
 
 
-readme = open('README.rst').read()
+with open('README.rst', encoding="utf-8") as fp:
+    readme = fp.read()
 
 setup(
     name='django-cid',

@@ -11,7 +11,7 @@ def generate_new_cid(upstream_cid=None):
             getattr(settings, 'CID_CONCATENATE_IDS', False)
             and getattr(settings, 'CID_GENERATE', False)
     ):
-        return '%s, %s' % (upstream_cid, build_cid())
+        return f'{upstream_cid}, {build_cid()}'
     return upstream_cid
 
 

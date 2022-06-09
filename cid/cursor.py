@@ -35,7 +35,8 @@ class CidCursorWrapper:
         if not cid:
             return sql
         cid = cid.replace('/*', r'\/\*').replace('*/', r'\*\/')
-        return "/* {} */\n{}".format(cid_sql_template.format(cid=cid), sql)
+        cid = cid_sql_template.format(cid=cid)
+        return f"/* {cid} */\n{sql}"
 
     # The following methods cannot be implemented in __getattr__, because the
     # code must run when the method is invoked, not just when it is accessed.
