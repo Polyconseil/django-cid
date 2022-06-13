@@ -6,7 +6,7 @@ with open('README.rst', encoding="utf-8") as fp:
 
 setup(
     name='django-cid',
-    version='2.3',
+    version='2.4.dev0',
     description="""Correlation IDs in Django for debugging requests""",
     long_description=readme,
     author='Snowball One',
