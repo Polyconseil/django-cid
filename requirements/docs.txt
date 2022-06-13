@@ -4,7 +4,3 @@ sphinx
 sphinx_rtd_theme
 
 django
-
-cx_oracle
-mysqlclient
-psycopg2
