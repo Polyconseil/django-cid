@@ -5,7 +5,7 @@ include LICENSE
 include README.rst
 recursive-include src/cid *.html *.png *.gif *js *.css *jpg *jpeg *svg *py
 
-graft docs
+prune docs
 prune requirements
 prune sandbox
 prune tests
