@@ -13,8 +13,8 @@ docs:
 .PHONY: quality
 quality:
 	check-manifest
-	isort --check-only --diff cid tests
-	pylint --reports=no setup.py cid tests
+	isort --check-only --diff src tests
+	pylint --reports=no setup.py src tests
 	check-branches
 	check-fixmes
 	python setup.py sdist >/dev/null 2>&1 && twine check dist/*
