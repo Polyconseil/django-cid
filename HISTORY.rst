@@ -6,7 +6,7 @@ History
 
 
 
-2.3 (unreleased)
+2.3 (2022-06-13)
 ++++++++++++++++
 
 - Under Python 3.7 and later, use context variables (with the contextvars module)
