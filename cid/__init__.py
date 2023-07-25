@@ -1,4 +1,4 @@
-import pkg_resources
+from importlib_metadata import distribution
 
 
-__version__ = pkg_resources.get_distribution('django-cid').version
+__version__ = distribution('django-cid').version
