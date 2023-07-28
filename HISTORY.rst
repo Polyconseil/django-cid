@@ -13,10 +13,10 @@ History
 versions of Python and Django (see details below). If you still use
 those versions, you should pin ``django-cid < 3``.
 
+- Add support of Django 3.2, 4.0, 4.1 and 4.2.
+
 - |backward-incompatible| Drop support of Python 3.7 and prior
   versions. Only Python 3.8 and later are supported.
-
-- Add support of Django 3.2 and 4.0.
 
 - |backward-incompatible| Drop support of Django 3.0 and prior
   versions. Only Django 3.1 and later are supported.
