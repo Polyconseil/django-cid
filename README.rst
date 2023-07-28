@@ -47,6 +47,6 @@ Sources are on GitHub: https://github.com/Polyconseil/django-cid
 Supported versions
 ------------------
 
-We currently support Python >= 3.7 and Django >= 3.1.
+We currently support Python >= 3.8 and Django >= 3.1.
 
 Other versions may work but are not supported.

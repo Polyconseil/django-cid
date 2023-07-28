@@ -6,11 +6,15 @@ History
 
 
 
-2.4 (unreleased)
+3.0 (unreleased)
 ++++++++++++++++
 
-- |backward-incompatible| Drop support of Python 3.6 and prior
-  versions. Only Python 3.7 and later are supported.
+**Important:** This release drops compatibility with old, unsupported
+versions of Python and Django (see details below). If you still use
+those versions, you should pin ``django-cid < 3``.
+
+- |backward-incompatible| Drop support of Python 3.7 and prior
+  versions. Only Python 3.8 and later are supported.
 
 - Add support of Django 3.2 and 4.0.
 
