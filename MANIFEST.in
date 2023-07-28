@@ -13,3 +13,4 @@ prune tests
 exclude Makefile
 exclude conftest.py
 exclude pyproject.toml
+exclude .readthedocs.yaml
