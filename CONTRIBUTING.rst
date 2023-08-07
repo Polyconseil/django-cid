@@ -56,7 +56,7 @@ Ready to contribute? Here's how to set up ``django-cid`` for local development.
 3. Set up a virtual environment and install the dependencies::
 
     $ pip install -e .
-    $ pip install -r requirement/tests.txt
+    $ pip install -r requirements/tests.txt
 
 4. Create a branch for local development::
 
