@@ -33,6 +33,16 @@ class TestCidCursor(TestCase):
             self.cursor_wrapper.add_comment("SELECT 1;")
         )
 
+    @override_settings(CID_SQL_STATEMENT_TEMPLATE='{sql}\n/* {cid} */')
+    @mock.patch('cid.cursor.get_cid')
+    def test_adds_comment_with_statement_template_setting_overriden(self, get_cid):
+        get_cid.return_value = 'testing-cursor-after-sql-statement'
+        expected = "SELECT 1;\n/* cid: testing-cursor-after-sql-statement */"
+        self.assertEqual(
+            expected,
+            self.cursor_wrapper.add_comment("SELECT 1;")
+        )
+
     @mock.patch('cid.cursor.get_cid')
     def test_no_comment_when_cid_is_none(self, get_cid):
         get_cid.return_value = None
