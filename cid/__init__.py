@@ -1,4 +1,6 @@
-import pkg_resources
+try:
+    import importlib.metadata as importlib_metadata
+except ImportError:
+    import importlib_metadata
 
-
-__version__ = pkg_resources.get_distribution('django-cid').version
+__version__ = importlib_metadata.version('django-cid')

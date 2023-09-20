@@ -19,6 +19,12 @@ setup(
     install_requires=[
         'django>=2.2',
     ],
+    extras_require={
+        ":python_version < '3.8'": [
+            'importlib_metadata',
+        ],
+    },
+
     license="BSD",
     zip_safe=False,
     keywords='django logging correlation id debugging',
