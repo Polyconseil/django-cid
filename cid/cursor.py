@@ -4,6 +4,7 @@ from .locals import get_cid
 
 
 DEFAULT_CID_SQL_COMMENT_TEMPLATE = 'cid: {cid}'
+DEFAULT_SQL_STATEMENT_TEMPLATE = '/* {cid} */\n{sql}'
 
 
 class CidCursorWrapper:
@@ -31,12 +32,16 @@ class CidCursorWrapper:
         cid_sql_template = getattr(
             settings, 'CID_SQL_COMMENT_TEMPLATE', DEFAULT_CID_SQL_COMMENT_TEMPLATE
         )
+        sql_statement_template = getattr(
+            settings, 'CID_SQL_STATEMENT_TEMPLATE', DEFAULT_SQL_STATEMENT_TEMPLATE
+        )
         cid = get_cid()
         if not cid:
             return sql
         cid = cid.replace('/*', r'\/\*').replace('*/', r'\*\/')
         cid = cid_sql_template.format(cid=cid)
-        return f"/* {cid} */\n{sql}"
+        statement = sql_statement_template.format(cid=cid, sql=sql)
+        return statement
 
     # The following methods cannot be implemented in __getattr__, because the
     # code must run when the method is invoked, not just when it is accessed.

@@ -9,7 +9,9 @@ History
 2.4 (unreleased)
 ++++++++++++++++
 
-- Nothing changed yet.
+- Add `CID_SQL_STATEMENT_TEMPLATE` setting to customize the position
+  of the correlation relative to the original SQL statement.
+  Contributed by Cauê Garcia Polimanti (@CaueP).
 
 
 2.3 (2022-06-13)

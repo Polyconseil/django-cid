@@ -244,6 +244,15 @@ a string with a ``cid`` format parameter:
     CID_SQL_COMMENT_TEMPLATE = 'correlation={cid}'
 
 
+Also, you may change the position of the correlation id injected in
+the statement by defining a ``CID_SQL_STATEMENT_TEMPLATE`` that is
+a string with a ``cid`` and a ``sql`` format parameter:
+
+.. code-block:: python
+
+    CID_SQL_STATEMENT_TEMPLATE = '/* {cid} */\n{sql}'
+
+
 Inclusion of the correlation id in templates
 --------------------------------------------
 
