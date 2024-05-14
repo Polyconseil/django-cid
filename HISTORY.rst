@@ -6,6 +6,12 @@ History
 
 
 
+2.5 (unreleased)
+++++++++++++++++
+
+- Nothing changed yet.
+
+
 2.4 (2024-05-14)
 ++++++++++++++++
 
