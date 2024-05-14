@@ -6,7 +6,7 @@ History
 
 
 
-2.4 (unreleased)
+2.4 (2024-05-14)
 ++++++++++++++++
 
 - Add `CID_SQL_STATEMENT_TEMPLATE` setting to customize the position
