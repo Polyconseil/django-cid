@@ -28,7 +28,7 @@ those versions, you should pin ``django-cid < 3``.
   versions. Only Django 3.1 and later are supported.
 
 
-2.4 (2024-06-14)
+2.4 (2024-05-14)
 ++++++++++++++++
 
 - Add ``CID_SQL_STATEMENT_TEMPLATE`` setting to customize the position
