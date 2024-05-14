@@ -6,7 +6,7 @@ History
 
 
 
-3.0 (unreleased)
+3.0 (2024-05-14)
 ++++++++++++++++
 
 **Important:** This release drops compatibility with old, unsupported
